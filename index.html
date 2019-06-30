@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Red Hand | Hand of designers</title>
+    <script src="js/html2Canvas.js"></script>
+    <script src="js/mediator.js"></script>
+    <script src="js/lib.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <section class="top">
+        <input screenShotHide type="file" name="image" id="image-input">
+        <i screenShotHide class="hints hide">Where advices belong</i>
+    </section>
+    <section class="bottom">
+        <div screenShotHide class="conf hide">
+            <label for="change-color">
+                Change color
+                <input type="color" id="change-color">
+            </label>
+        </div>
+        <a screenShotHide id="download" class="hide">Download</a>
+    </section>
+    <div id="image-wrapper">
+        <!-- <div class="line"><span>300px</span></div> -->
+    </div>
+    <script src="js/capture.js"></script>
+    <script src="js/linesControl.js"></script>
+</body>
+
+</html>
+<!-- *to solve* Bug 1 (failed-network-error--when-download):
+Apparently this is a Chrome issue with the data-URL getting too long. 
+I'm still working through it myself, 
+but there apparently are some solutions involving Blob-objects. 
+
+--- Read: https://stackoverflow.com/questions/37135417/download-canvas-as-png-in-fabric-js-giving-network-error/-->
+<!-- *solved* Bug 2 (height of canvas -> 0 so data is data; and the format is not compatible) 
+(This one was funny)
+setting position absolute to img inside image-wrapper 
+set height of the parent(image-wrapper) to 0
+which set canvas height 0, and the image returned empty space
+-->
