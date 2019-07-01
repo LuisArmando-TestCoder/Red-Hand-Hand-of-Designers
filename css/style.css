@@ -11,6 +11,7 @@ body > section {
   width: 100%;
   position: fixed;
   display: flex;
+  background: #0008;
   justify-content: space-between;
 }
 
@@ -24,16 +25,33 @@ body > section {
   color: var(--the-color);
   text-align: center;
   position: absolute;
-  line-height: 2;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .line span {
+  user-select: none;
+  background: #fff8;
   font-family: sans-serif;
   letter-spacing: 1px;
-  margin-top: 50px;
+  padding: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.line [vertical=true] {
+  margin-top: 75px;
+}
+.line [vertical=false] {
+  margin-top: -75px;
+}
+.line [horizontal=true] {
   margin-left: 75px;
+}
+.line [horizontal=false] {
+  margin-left: -75px;
 }
 
 .bottom {
@@ -60,6 +78,11 @@ body > section {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+}
+
+#image-wrapper {
+  display: inline-block;
+  margin: 25px 0;
 }
 
 #image-wrapper img {

@@ -6,6 +6,7 @@
     };
     let vertex_tuple = [];
     let allow_line_creation = true;
+    let allow_line_move = false;
     let line_weight = 2;
     let target_line;
     let target_measure;
@@ -27,7 +28,6 @@
 
     function setLineMeasure(line, measure, tuple) {
         let click_valley = 1;
-        console.log(tuple[1].x, tuple[1].y, tuple[1].x < tuple[1].y);
         // close it in an if
         if ((tuple[1].x - tuple[0].x > tuple[1].y - tuple[0].y) ^
             (tuple[0].x - tuple[1].x > tuple[1].y - tuple[0].y)) {
@@ -52,6 +52,7 @@
                 line.style.height = `${tuple[0].y - tuple[1].y}px`;
             }
             measure.textContent = line.style.height;
+            // positionLineMeasure(line);
         }
 
     }
@@ -63,7 +64,7 @@
                 let measure = document.createElement('span');
 
                 includeVertex(e);
-                if (vertex_tuple.length >= 1) {
+                if (vertex_tuple.length === 1) {
                     line.appendChild(measure);
                     image_wrapper.appendChild(line);
                     target_line = line;
@@ -79,21 +80,49 @@
         }
     }
 
-    M.subscribe('set-line', clickWrapper);
-
-    // toggleLinesCreator();
-    window.addEventListener('scroll', saveScrollPosition);
-    image_wrapper.addEventListener('click', M.publish('set-line').topic);
-    image_wrapper.addEventListener('mousemove', e => {
+    function previewLine(e) {
         if (vertex_tuple.length) {
             target_line.classList.add('line');
-            setLineMeasure(target_line,
-                target_measure,
+            setLineMeasure(target_line, target_measure,
                 vertex_tuple.concat({
                     x: e.clientX,
                     y: e.clientY
                 }));
+            positionLineMeasure(e);
         }
-    });
+    }
+
+    function toggleMoveLine(e) {
+        if (e.target.classList.contains('line') && vertex_tuple.length === 0) {
+            allow_line_move = !allow_line_move;
+            target_line = e.target;
+        }
+    }
+
+    function moveLine(e) {
+        if (allow_line_move) {
+            target_line.style.left = `${e.clientX - target_line.style.width.split('px')[0] / 2}px`;
+            target_line.style.top = `${e.clientY - target_line.style.height.split('px')[0] / 2}px`;
+            positionLineMeasure(e);
+        }
+    }
+
+    function positionLineMeasure(e) {
+        const measure = target_line.querySelector('span');
+        measure.setAttribute('vertical', e.clientY < image_wrapper.clientWidth / 2);
+        measure.setAttribute('horizontal', e.clientX < image_wrapper.clientHeight / 2);
+    }
+
+    M.subscribe('set-line', clickWrapper);
+    M.subscribe('preview-line', previewLine);
+    M.subscribe('prepare-move-line', toggleMoveLine);
+    M.subscribe('move-line', moveLine);
+
+    // toggleLinesCreator();
+    window.addEventListener('scroll', saveScrollPosition);
+    image_wrapper.addEventListener('click', M.publish('set-line').topic);
+    image_wrapper.addEventListener('click', M.publish('prepare-move-line').topic);
+    image_wrapper.addEventListener('mousemove', M.publish('preview-line').topic);
+    image_wrapper.addEventListener('mousemove', M.publish('move-line').topic);
     // image_wrapper.addEventListener('mousemove', M.publish('preview-line').topic); // when stretching line
 })();

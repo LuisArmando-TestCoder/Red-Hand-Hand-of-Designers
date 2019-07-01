@@ -17,6 +17,7 @@
   function readerLoaded(e) {
     const img = document.createElement('img');
     img.src = e.target.result;
+    image_wrapper.innerHTML = '';
     image_wrapper.appendChild(img);
   }
 
@@ -30,7 +31,7 @@
       onrendered(canvas) {
         const image = canvas.toDataURL();
         link.href = image;
-        link.download = `red-lines-${name}`;
+        link.download = `red-hand-${name}`;
         link.click();
         removeHide();
         restoreScroll();
