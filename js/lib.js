@@ -23,11 +23,3 @@ HTMLElement.prototype.addEventListeners = function(eventsNames, callbackStack, o
         }        
     });
 }
-
-function deliverKeyCall(e) {
-    switch(e.which) {
-        case 81: // q and Q
-            M.publish('create-line').topic(e);
-            break;
-    }
-}

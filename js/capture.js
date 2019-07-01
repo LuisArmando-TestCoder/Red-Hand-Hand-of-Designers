@@ -51,6 +51,14 @@
     window.scrollTo(ls.getItem('scrollX'), ls.getItem('scrollY'));
   }
 
+  function deliverKeyCall(e) {
+      switch(e.which) {
+          case 81: // q and Q
+              M.publish('create-line').topic(e);
+              break;
+      }
+  }
+
   M.subscribe('prepare-capture', readerLoaded);
   M.subscribe('prepare-capture', removeHide);
   M.subscribe('prepare-capture', activateKeyCommands);
