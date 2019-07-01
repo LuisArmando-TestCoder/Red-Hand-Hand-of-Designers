@@ -63,6 +63,7 @@ body > section {
 }
 
 #image-wrapper img {
+  user-select: none;
   display: block;
 }
 

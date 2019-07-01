@@ -26,29 +26,34 @@
     }
 
     function setLineMeasure(line, measure, tuple) {
-        let chosen_measure;
-        if (tuple[0].x < tuple[1].x) {
-            line.style.left = `${tuple[0].x + window.scrollX}px`; //
-            line.style.width = `${tuple[1].x - tuple[0].x}px`;
-        } else {
-            line.style.left = `${tuple[1].x + window.scrollX}px`; //
-            line.style.width = `${tuple[0].x - tuple[1].x}px`;
-        }
-        if (tuple[0].y < tuple[1].y) {
-            line.style.top = `${tuple[0].y + window.scrollY}px`; //
-            line.style.height = `${tuple[1].y - tuple[0].y}px`;
-        } else {
-            line.style.top = `${tuple[1].y + window.scrollY}px`; //
-            line.style.height = `${tuple[0].y - tuple[1].y}px`;
-        }
-        if (line.style.height < line.style.width) {
-            line.style.width = `${line_weight}px`;
-            chosen_measure = line.style.height;
-        } else {
+        let click_valley = 1;
+        console.log(tuple[1].x, tuple[1].y, tuple[1].x < tuple[1].y);
+        // close it in an if
+        if ((tuple[1].x - tuple[0].x > tuple[1].y - tuple[0].y) ^
+            (tuple[0].x - tuple[1].x > tuple[1].y - tuple[0].y)) {
+            line.style.top = `${tuple[0].y + window.scrollY + click_valley}px`;
             line.style.height = `${line_weight}px`;
-            chosen_measure = line.style.width;
+            if (tuple[0].x < tuple[1].x) {
+                line.style.left = `${tuple[0].x + window.scrollX}px`;
+                line.style.width = `${tuple[1].x - tuple[0].x}px`;
+            } else if (tuple[1].x < tuple[0].x) {
+                line.style.left = `${tuple[1].x + window.scrollX}px`;
+                line.style.width = `${tuple[0].x - tuple[1].x}px`;
+            }
+            measure.textContent = line.style.width;
+        } else {
+            line.style.left = `${tuple[0].x + window.scrollX + click_valley}px`;
+            line.style.width = `${line_weight}px`;
+            if (tuple[0].y < tuple[1].y) {
+                line.style.top = `${tuple[0].y + window.scrollY}px`;
+                line.style.height = `${tuple[1].y - tuple[0].y}px`;
+            } else if (tuple[1].y < tuple[0].y) {
+                line.style.top = `${tuple[1].y + window.scrollY}px`;
+                line.style.height = `${tuple[0].y - tuple[1].y}px`;
+            }
+            measure.textContent = line.style.height;
         }
-        measure.textContent = chosen_measure;
+
     }
 
     function clickWrapper(e) {

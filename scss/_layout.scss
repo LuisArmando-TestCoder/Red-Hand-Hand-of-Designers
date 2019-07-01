@@ -48,6 +48,7 @@
 }
 
 #image-wrapper img {
+    user-select: none;
     display: block;
     // position: absolute; this was causing bug 2
 }
