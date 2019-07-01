@@ -42,10 +42,10 @@ body > section {
   -o-border-radius: 5px;
 }
 .line [vertical=true] {
-  margin-top: 75px;
+  margin-top: 50px;
 }
 .line [vertical=false] {
-  margin-top: -75px;
+  margin-top: -50px;
 }
 .line [horizontal=true] {
   margin-left: 75px;

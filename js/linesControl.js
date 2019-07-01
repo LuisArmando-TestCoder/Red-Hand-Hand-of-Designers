@@ -93,9 +93,14 @@
     }
 
     function toggleMoveLine(e) {
-        if (e.target.classList.contains('line') && vertex_tuple.length === 0) {
-            allow_line_move = !allow_line_move;
-            target_line = e.target;
+        if (vertex_tuple.length === 0) {
+            if (e.target.classList.contains('line')) {
+                allow_line_move = !allow_line_move;
+                target_line = e.target;
+            } else if (e.target.tagName === 'SPAN') {
+                allow_line_move = !allow_line_move;
+                target_line = e.target.parentElement;
+            }
         }
     }
 
