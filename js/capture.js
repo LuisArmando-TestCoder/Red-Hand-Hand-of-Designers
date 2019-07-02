@@ -8,16 +8,17 @@
 
   function uploadImage(e) {
     const input = e.target;
-    let reader = new FileReader();
-    name = input.files[0].name;
-    reader.readAsDataURL(input.files[0]);
-    reader.addEventListener('load', M.publish('prepare-capture').topic);
+    [...input.files].forEach(file => {
+      let reader = new FileReader();
+      name = file.name;
+      reader.readAsDataURL(file);
+      reader.addEventListener('load', M.publish('prepare-capture').topic);
+    });
   }
 
   function readerLoaded(e) {
     const img = document.createElement('img');
     img.src = e.target.result;
-    image_wrapper.innerHTML = '';
     image_wrapper.appendChild(img);
   }
 
@@ -39,8 +40,8 @@
     });
   }
 
-  function activateKeyCommands() {
-    if(!window.areKeyCommandsActivated) { // not native, just made it up
+  function activateKeyCommands() { // ---------------------- not using it
+    if (!window.areKeyCommandsActivated) { // not native, just made it up
       window.addEventListener('keydown', deliverKeyCall);
       window.areKeyCommandsActivated = true;
     }
@@ -52,16 +53,16 @@
   }
 
   function deliverKeyCall(e) {
-      switch(e.which) {
-          case 81: // q and Q
-              M.publish('create-line').topic(e);
-              break;
-      }
+    switch (e.which) {
+      case 81: // q and Q
+        M.publish('create-line').topic(e);
+        break;
+    }
   }
 
   M.subscribe('prepare-capture', readerLoaded);
   M.subscribe('prepare-capture', removeHide);
-  M.subscribe('prepare-capture', activateKeyCommands);
+  // M.subscribe('prepare-capture', activateKeyCommands);
 
   image_input.addEventListener('input', uploadImage);
   download.addEventListener('click', e => {

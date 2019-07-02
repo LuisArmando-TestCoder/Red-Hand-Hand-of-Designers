@@ -42,16 +42,16 @@ body > section {
   -o-border-radius: 5px;
 }
 .line [vertical=true] {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .line [vertical=false] {
-  margin-top: -50px;
+  margin-top: -30px;
 }
 .line [horizontal=true] {
-  margin-left: 75px;
+  margin-left: 60px;
 }
 .line [horizontal=false] {
-  margin-left: -75px;
+  margin-left: -60px;
 }
 
 .bottom {
@@ -82,9 +82,9 @@ body > section {
 
 #image-wrapper {
   display: inline-block;
-  margin: 25px 0;
+  margin: 0 0 25px;
+  position: relative;
 }
-
 #image-wrapper img {
   user-select: none;
   display: block;
