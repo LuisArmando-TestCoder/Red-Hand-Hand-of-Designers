@@ -68,7 +68,10 @@
     }
   }
 
-  if(localStorage.getItem('files')) renderFromStorage();
+  if(localStorage.getItem('files')) {
+    renderFromStorage();
+    removeHide();
+  }
 
   M.subscribe('prepare-capture', readerLoaded);
   M.subscribe('prepare-capture', removeHide);

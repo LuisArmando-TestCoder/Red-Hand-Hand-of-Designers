@@ -1,5 +1,6 @@
 (function () {
     const image_wrapper = document.getElementById('image-wrapper');
+    const delete_line = document.getElementById('delete-line');
     const vertex = {
         x: null,
         y: null
@@ -24,43 +25,47 @@
 
     function setLineMeasure(line, measure, tuple) {
         let click_valley = 1;
-        // close it in an if
-        if ((tuple[1].x - tuple[0].x > tuple[1].y - tuple[0].y) ^
-            (tuple[0].x - tuple[1].x > tuple[1].y - tuple[0].y)) {
-            line.style.top = `${tuple[0].y + window.scrollY + click_valley}px`;
+        let x = [tuple[0].x, tuple[1].x];
+        let y = [tuple[0].y, tuple[1].y];
+        if ((x[1] - x[0] > y[1] - y[0]) ^
+            (x[0] - x[1] > y[1] - y[0])) {
+            line.style.top = `${y[0] + window.scrollY + click_valley}px`;
             line.style.height = `${line_weight}px`;
-            if (tuple[0].x < tuple[1].x) {
-                line.style.left = `${tuple[0].x + window.scrollX}px`;
-                line.style.width = `${tuple[1].x - tuple[0].x}px`;
-            } else if (tuple[1].x < tuple[0].x) {
-                line.style.left = `${tuple[1].x + window.scrollX}px`;
-                line.style.width = `${tuple[0].x - tuple[1].x}px`;
+            if (x[0] < x[1]) {
+                line.style.left = `${x[0] + window.scrollX}px`;
+                line.style.width = `${x[1] - x[0]}px`;
+            } else if (x[1] < x[0]) {
+                line.style.left = `${x[1] + window.scrollX}px`;
+                line.style.width = `${x[0] - x[1]}px`;
             }
             measure.textContent = line.style.width;
         } else {
-            line.style.left = `${tuple[0].x + window.scrollX + click_valley}px`;
+            line.style.left = `${x[0] + window.scrollX + click_valley}px`;
             line.style.width = `${line_weight}px`;
-            if (tuple[0].y < tuple[1].y) {
-                line.style.top = `${tuple[0].y + window.scrollY}px`;
-                line.style.height = `${tuple[1].y - tuple[0].y}px`;
-            } else if (tuple[1].y < tuple[0].y) {
-                line.style.top = `${tuple[1].y + window.scrollY}px`;
-                line.style.height = `${tuple[0].y - tuple[1].y}px`;
+            if (y[0] < y[1]) {
+                line.style.top = `${y[0] + window.scrollY}px`;
+                line.style.height = `${y[1] - y[0]}px`;
+            } else if (y[1] < y[0]) {
+                line.style.top = `${y[1] + window.scrollY}px`;
+                line.style.height = `${y[0] - y[1]}px`;
             }
             measure.textContent = line.style.height;
-            // positionLineMeasure(line);
         }
 
     }
 
     function clickWrapper(e) {
-        if (e.target.tagName === 'IMG') {
+        if (e.target.id === 'image-wrapper') {
             if (allow_line_creation) {
-                let line = document.createElement('div');
-                let measure = document.createElement('span');
+                const line = document.createElement('div');
+                const measure = document.createElement('span');
+                const buttonLeft = document.createElement('button');
+                const buttonRight = document.createElement('button');
 
                 includeVertex(e);
                 if (vertex_tuple.length === 1) {
+                    line.appendChild(buttonLeft);
+                    line.appendChild(buttonRight);
                     line.appendChild(measure);
                     image_wrapper.appendChild(line);
                     target_line = line;
@@ -98,8 +103,12 @@
 
     function positionLineMeasure(e) {
         const measure = target_line.querySelector('span');
-        measure.setAttribute('vertical', e.clientY < image_wrapper.clientHeight / 2 - window.scrollY);
-        measure.setAttribute('horizontal', e.clientX < image_wrapper.clientWidth / 2 - window.scrollX);
+        const is = {
+            vertical: e.clientY < image_wrapper.clientHeight / 2 - window.scrollY,
+            horizontal: e.clientX < image_wrapper.clientWidth / 2 - window.scrollX
+        };
+        measure.setAttribute('vertical', is.vertical);
+        measure.setAttribute('horizontal', is.horizontal);
     }
 
     function prepareMoveLine(e) {
@@ -112,10 +121,25 @@
         }
     }
 
+    function deleteLine() {
+        if(target_line) {
+            target_line.remove();
+            target_line = null;
+        }
+    }
+
+    function setOrientation() {
+        const l = target_line.style;
+        const isWidthBigger = Math.abs(px(l.width )- px(l.left)) < Math.abs(px(l.height) - px(l.top));
+        target_line.setAttribute('biggerwidth', isWidthBigger);
+    }
+
+    M.subscribe('move-line', moveLine);
     M.subscribe('set-line', clickWrapper);
+    M.subscribe('set-line', setOrientation);
+    M.subscribe('delete-line', deleteLine);
     M.subscribe('preview-line', previewLine);
     M.subscribe('prepare-move-line', prepareMoveLine);
-    M.subscribe('move-line', moveLine);
 
     // toggleLinesCreator();
     window.addEventListener('scroll', saveScrollPosition);
@@ -124,4 +148,5 @@
     image_wrapper.addEventListener('mousemove', M.publish('move-line').topic);
     image_wrapper.addEventListener('mousedown', M.publish('prepare-move-line').topic);
     image_wrapper.addEventListener('mouseup', () => mouse_pressed = false);
+    delete_line.addEventListener('click', M.publish('delete-line').topic);
 })();
