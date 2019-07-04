@@ -6,15 +6,10 @@
     };
     let vertex_tuple = [];
     let allow_line_creation = true;
-    let allow_line_move = false;
-    let line_weight = 3;
+    let line_weight = 2;
     let target_line;
     let target_measure;
     let mouse_pressed;
-
-    function toggleLinesCreator() { // ---------------------- not using it
-        allow_line_creation = !allow_line_creation;
-    }
 
     function saveScrollPosition() {
         localStorage.setItem('scrollY', window.scrollY);
@@ -93,25 +88,13 @@
         }
     }
 
-    // function toggleMoveLine(e) {
-    //     if (vertex_tuple.length === 0) {
-    //         if (e.target.classList.contains('line')) {
-    //             allow_line_move = !allow_line_move;
-    //             target_line = e.target;
-    //         } else if (e.target.tagName === 'SPAN') {
-    //             allow_line_move = !allow_line_move;
-    //             target_line = e.target.parentElement;
-    //         }
-    //     }
-    // }
-
-    // function moveLine(e) {
-    //     if (allow_line_move && mouse_pressed) {
-    //         target_line.style.left = `${e.clientX - target_line.style.width.split('px')[0] / 2 + window.scrollX}px`;
-    //         target_line.style.top = `${e.clientY - target_line.style.height.split('px')[0] / 2 + window.scrollY}px`;
-    //         positionLineMeasure(e);
-    //     }
-    // }
+    function moveLine(e) {
+        if (target_line && mouse_pressed) {
+            target_line.style.left = `${e.clientX - target_line.style.width.split('px')[0] / 2 + window.scrollX}px`;
+            target_line.style.top = `${e.clientY - target_line.style.height.split('px')[0] / 2 + window.scrollY}px`;
+            positionLineMeasure(e);
+        }
+    }
 
     function positionLineMeasure(e) {
         const measure = target_line.querySelector('span');
@@ -119,17 +102,26 @@
         measure.setAttribute('horizontal', e.clientX < image_wrapper.clientWidth / 2 - window.scrollX);
     }
 
+    function prepareMoveLine(e) {
+        if(e.target.classList.contains('line')) {
+            target_line = e.target;
+            mouse_pressed = true;
+        } else if(e.target.tagName === 'SPAN') {
+            target_line = e.target.parentElement;
+            mouse_pressed = true;
+        }
+    }
+
     M.subscribe('set-line', clickWrapper);
     M.subscribe('preview-line', previewLine);
-    // M.subscribe('prepare-move-line', toggleMoveLine);
-    // M.subscribe('move-line', moveLine);
+    M.subscribe('prepare-move-line', prepareMoveLine);
+    M.subscribe('move-line', moveLine);
 
     // toggleLinesCreator();
     window.addEventListener('scroll', saveScrollPosition);
     image_wrapper.addEventListener('click', M.publish('set-line').topic);
-    // image_wrapper.addEventListener('mousedown', M.publish('prepare-move-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('preview-line').topic);
-    // image_wrapper.addEventListener('mousemove', M.publish('move-line').topic);
-    // image_wrapper.addEventListener('mousedown', () => mouse_pressed = true);
-    // image_wrapper.addEventListener('mouseup', () => mouse_pressed = false);
+    image_wrapper.addEventListener('mousemove', M.publish('move-line').topic);
+    image_wrapper.addEventListener('mousedown', M.publish('prepare-move-line').topic);
+    image_wrapper.addEventListener('mouseup', () => mouse_pressed = false);
 })();

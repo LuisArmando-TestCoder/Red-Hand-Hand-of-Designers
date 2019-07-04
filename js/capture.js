@@ -4,6 +4,7 @@
   const image_input = document.getElementById('image-input');
   const image_wrapper = document.getElementById('image-wrapper');
   const screen_shot_hide = [...document.querySelectorAll('[screenShotHide]')];
+  const images = [];
   let name;
 
   function uploadImage(e) {
@@ -19,7 +20,14 @@
   function readerLoaded(e) {
     const img = document.createElement('img');
     img.src = e.target.result;
+    images.push(img.src);
     image_wrapper.appendChild(img);
+    localStorage.setItem('files', JSON.stringify(images));
+  }
+
+  function renderFromStorage() {
+    const localImages = JSON.parse(localStorage.getItem('files'));
+    localImages.forEach(img => readerLoaded({target: {result: img}}));
   }
 
   function removeHide() {
@@ -59,6 +67,8 @@
         break;
     }
   }
+
+  if(localStorage.getItem('files')) renderFromStorage();
 
   M.subscribe('prepare-capture', readerLoaded);
   M.subscribe('prepare-capture', removeHide);
