@@ -7,6 +7,7 @@
     };
     let vertex_tuple = [];
     let allow_line_creation = true;
+    let allow_line_resize = false;
     let line_weight = 2;
     let target_line;
     let target_measure;
@@ -112,11 +113,13 @@
     }
 
     function prepareMoveLine(e) {
-        if(e.target.classList.contains('line')) {
-            target_line = e.target;
+        const tag = e.target.tagName;
+        e = e.target;
+        if(e.classList.contains('line')) {
+            target_line = e;
             mouse_pressed = true;
-        } else if(e.target.tagName === 'SPAN') {
-            target_line = e.target.parentElement;
+        } else if(tag === 'SPAN') {
+            target_line = e.parentElement;
             mouse_pressed = true;
         }
     }
@@ -130,8 +133,24 @@
 
     function setOrientation() {
         const l = target_line.style;
-        const isWidthBigger = Math.abs(px(l.width )- px(l.left)) < Math.abs(px(l.height) - px(l.top));
+        const isWidthBigger = Math.abs(px(l.width ) - px(l.left)) < Math.abs(px(l.height) - px(l.top));
         target_line.setAttribute('biggerwidth', isWidthBigger);
+    }
+
+    function prepareResizeLine(e) {
+        const tag = e.target.tagName;
+        e = e.target;
+        if(tag === 'BUTTON') {
+            target_line = e.parentElement;
+            mouse_pressed = true;
+            allow_line_resize = true;
+        } else allow_line_resize = false;
+    }
+
+    function resizeLine(e) { // totototototo do
+        if(allow_line_resize) {
+            setLineMeasure(line, measure, vertex_tuple);
+        }
     }
 
     M.subscribe('move-line', moveLine);
@@ -140,13 +159,20 @@
     M.subscribe('delete-line', deleteLine);
     M.subscribe('preview-line', previewLine);
     M.subscribe('prepare-move-line', prepareMoveLine);
+    M.subscribe('prepare-resize-line', prepareResizeLine);
+    M.subscribe('resize-line', resizeLine);
 
     // toggleLinesCreator();
     window.addEventListener('scroll', saveScrollPosition);
     image_wrapper.addEventListener('click', M.publish('set-line').topic);
+
     image_wrapper.addEventListener('mousemove', M.publish('preview-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('move-line').topic);
+    image_wrapper.addEventListener('mousemove', M.publish('resize-line').topic);
+
     image_wrapper.addEventListener('mousedown', M.publish('prepare-move-line').topic);
+    image_wrapper.addEventListener('mousedown', M.publish('prepare-resize-line').topic);
+
     image_wrapper.addEventListener('mouseup', () => mouse_pressed = false);
     delete_line.addEventListener('click', M.publish('delete-line').topic);
 })();
