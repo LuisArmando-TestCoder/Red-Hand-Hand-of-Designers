@@ -41,10 +41,6 @@ Apparently this is a Chrome issue with the data-URL getting too long.
 I'm still working through it myself, 
 but there apparently are some solutions involving Blob-objects. 
 
---- Read: https://stackoverflow.com/questions/37135417/download-canvas-as-png-in-fabric-js-giving-network-error/-->
-<!-- *solved* Bug 2 (height of canvas -> 0 so data is data; and the format is not compatible) 
-(This one was funny)
-setting position absolute to img inside image-wrapper 
-set height of the parent(image-wrapper) to 0
-which set canvas height 0, and the image returned empty space
+--- Read: https://stackoverflow.com/questions/37135417/download-canvas-as-png-in-fabric-js-giving-network-error/
+--- Real answer: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob#Polyfill/
 -->

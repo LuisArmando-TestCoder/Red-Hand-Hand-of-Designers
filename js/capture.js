@@ -38,12 +38,15 @@
     screen_shot_hide.forEach(elem => elem.classList.add('hide'));
     html2canvas(image_wrapper, {
       onrendered(canvas) {
-        const image = canvas.toDataURL();
-        link.href = image;
-        link.download = `red-hand-${name}`;
-        link.click();
-        removeHide();
-        restoreScroll();
+        canvas.toBlob(image => { // to blob method needed if the image gets too big
+          image = URL.createObjectURL(image);
+          console.log(image);
+          link.href = image;
+          link.download = `red-hand-${name}`;
+          link.click();
+          removeHide();
+          restoreScroll();
+        });
       }
     });
   }

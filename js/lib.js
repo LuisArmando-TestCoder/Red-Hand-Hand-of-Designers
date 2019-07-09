@@ -23,6 +23,7 @@ HTMLElement.prototype.addEventListeners = function(eventsNames, callbackStack, o
         }        
     });
 }
+
 function px(str) {
     return str.split('px')[0];
 }
