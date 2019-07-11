@@ -21,6 +21,7 @@
     const img = document.createElement('img');
     img.src = e.target.result;
     images.push(img.src);
+    image_wrapper.innerHTML = '';
     image_wrapper.appendChild(img);
     localStorage.setItem('files', JSON.stringify(images));
   }

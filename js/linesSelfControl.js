@@ -220,7 +220,6 @@
     M.subscribe('prepare-resize-line', prepareResizeLine);
     M.subscribe('resize-line', resizeLine);
 
-    // toggleLinesCreator();
     window.addEventListener('scroll', saveScrollPosition);
     image_wrapper.addEventListener('click', M.publish('set-line').topic);
 
