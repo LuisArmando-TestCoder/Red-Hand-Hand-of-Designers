@@ -154,7 +154,7 @@
     function setMouseOrientation() {
         const l = target_line.style;
         const mouseOrientation = px(l.width) < px(l.height);
-        target_line.setAttribute('mouse_rientation', mouseOrientation ? 1 : 0);
+        target_line.setAttribute('mouse_orientation', mouseOrientation ? 1 : 0);
     }
 
     function prepareResizeLine(e) {
@@ -173,21 +173,21 @@
     function getVertex() {
         return [
             [
-                { // nice
+                {
                     x: px(target_style.left) - window.scrollX,
                     y: px(target_style.top) - window.scrollY + px(target_style.height)
                 },
-                { // 
+                {
                     x: px(target_style.left) - window.scrollX + px(target_style.width),
-                    y: px(target_style.top) - window.scrollY
+                    y: px(target_style.top) - window.scrollY + px(target_style.height)
                 }
             ],
             [
-                { // nice
+                {
                     x: px(target_style.left) - window.scrollX,
                     y: px(target_style.top) - window.scrollY
                 },
-                { // nice
+                {
                     x: px(target_style.left) - window.scrollX,
                     y: px(target_style.top) - window.scrollY
                 }

@@ -18,10 +18,6 @@
     </section>
     <section class="bottom">
         <div screenShotHide class="conf hide">
-            <label for="change-color">
-                Change color
-                <input type="color" id="change-color">
-            </label>
             <button id="delete-line">Delete line</button>
         </div>
         <a screenShotHide id="download" class="hide">Download</a>
@@ -36,10 +32,11 @@
 </html>
 <!-- I wrote these bugs this here to not do it again -->
 
-<!-- *to solve* Bug 1 (failed-network-error--when-download):
-Apparently this is a Chrome issue with the data-URL getting too long. 
-I'm still working through it myself, 
-but there apparently are some solutions involving Blob-objects. 
+<!-- *to solve* 
+    Bug 1 (failed-network-error--when-download):
+    Apparently this is a Chrome issue with the data-URL getting too long. 
+    I'm still working through it myself, 
+    but there apparently are some solutions involving Blob-objects. 
 
 --- Read: https://stackoverflow.com/questions/37135417/download-canvas-as-png-in-fabric-js-giving-network-error/
 --- Real answer: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob#Polyfill/
