@@ -64,10 +64,10 @@ body > section {
   bottom: -2px;
   right: -2px;
 }
-.line[biggerwidth="1"] button {
+.line[mouse_orientation="0"] button {
   cursor: ew-resize;
 }
-.line[biggerwidth="0"] button {
+.line[mouse_orientation="1"] button {
   cursor: ns-resize;
 }
 .line [vertical=true] {

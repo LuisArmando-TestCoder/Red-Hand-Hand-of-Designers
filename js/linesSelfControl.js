@@ -100,8 +100,13 @@
 
     function moveLine(e) {
         if (target_line && mouse_pressed && !allow_line_resize) {
-            target_line.style.left = `${e.clientX - target_line.style.width.split('px')[0] / 2 + window.scrollX}px`;
-            target_line.style.top = `${e.clientY - target_line.style.height.split('px')[0] / 2 + window.scrollY}px`;
+            target_line.style.left = `${e.clientX - 
+                target_line.style.width.split('px')[0] / 2 + 
+                window.scrollX}px`;
+
+                target_line.style.top = `${e.clientY - 
+                target_line.style.height.split('px')[0] / 2 + 
+                window.scrollY}px`;
             positionLineMeasure(e);
         }
     }
@@ -139,8 +144,17 @@
 
     function setOrientation() {
         const l = target_line.style;
-        const isWidthBigger = Math.abs(px(l.width) - px(l.left)) < Math.abs(px(l.height) - px(l.top));
+        const isWidthBigger = 
+        Math.abs(px(l.width) - px(l.left)) + window.scrollX < 
+        Math.abs(px(l.height) - px(l.top)) + window.scrollY;
         target_line.setAttribute('biggerwidth', isWidthBigger ? 1 : 0);
+        setMouseOrientation();
+    }
+
+    function setMouseOrientation() {
+        const l = target_line.style;
+        const mouseOrientation = px(l.width) < px(l.height);
+        target_line.setAttribute('mouse_rientation', mouseOrientation ? 1 : 0);
     }
 
     function prepareResizeLine(e) {
@@ -152,7 +166,6 @@
             mouse_pressed = true;
             allow_line_resize = true;
             target_style = JSON.parse(JSON.stringify(target_line.style));
-            console.log(target_style);
             side_pressed = e.getAttribute('side_pressed');
         } else allow_line_resize = false;
     }
@@ -160,21 +173,21 @@
     function getVertex() {
         return [
             [
-                {
+                { // nice
                     x: px(target_style.left) - window.scrollX,
                     y: px(target_style.top) - window.scrollY + px(target_style.height)
                 },
-                {
+                { // 
                     x: px(target_style.left) - window.scrollX + px(target_style.width),
                     y: px(target_style.top) - window.scrollY
                 }
             ],
             [
-                {
+                { // nice
                     x: px(target_style.left) - window.scrollX,
                     y: px(target_style.top) - window.scrollY
                 },
-                {
+                { // nice
                     x: px(target_style.left) - window.scrollX,
                     y: px(target_style.top) - window.scrollY
                 }
@@ -187,12 +200,14 @@
             const isLeft = side_pressed;
             const biggerwidth = target_line.getAttribute('biggerwidth');
             const vertex = getVertex()[isLeft][biggerwidth];
+            console.log(isLeft, biggerwidth);
             setLineMeasure(target_line, target_measure,
                 [vertex, {
                     x: e.clientX,
                     y: e.clientY
                 }]);
-            positionLineMeasure(e)
+            positionLineMeasure(e);
+            setMouseOrientation();
         }
     }
 

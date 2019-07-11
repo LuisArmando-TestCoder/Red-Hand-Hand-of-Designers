@@ -52,11 +52,11 @@
         right: -2px;
     }
 
-    &[biggerwidth="1"] button {
+    &[mouse_orientation="0"] button {
         cursor: ew-resize;
     }
 
-    &[biggerwidth="0"] button {
+    &[mouse_orientation="1"] button {
         cursor: ns-resize;
     }
 
