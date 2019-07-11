@@ -25,5 +25,5 @@ HTMLElement.prototype.addEventListeners = function(eventsNames, callbackStack, o
 }
 
 function px(str) {
-    return str.split('px')[0];
+    return +str.split('px')[0];
 }

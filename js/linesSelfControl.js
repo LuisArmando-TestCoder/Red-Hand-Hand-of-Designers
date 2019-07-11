@@ -10,8 +10,10 @@
     let allow_line_resize = false;
     let line_weight = 2;
     let target_line;
+    let target_style;
     let target_measure;
     let mouse_pressed;
+    let side_pressed;
 
     function saveScrollPosition() {
         localStorage.setItem('scrollY', window.scrollY);
@@ -57,7 +59,7 @@
 
     function clickWrapper(e) {
         if (e.target.id === 'image-wrapper') {
-            if (allow_line_creation) {
+            if (allow_line_creation && !allow_line_resize) {
                 const line = document.createElement('div');
                 const measure = document.createElement('span');
                 const buttonLeft = document.createElement('button');
@@ -65,6 +67,8 @@
 
                 includeVertex(e);
                 if (vertex_tuple.length === 1) {
+                    buttonLeft.setAttribute('side_pressed', '0');
+                    buttonRight.setAttribute('side_pressed', '1');
                     line.appendChild(buttonLeft);
                     line.appendChild(buttonRight);
                     line.appendChild(measure);
@@ -95,7 +99,7 @@
     }
 
     function moveLine(e) {
-        if (target_line && mouse_pressed) {
+        if (target_line && mouse_pressed && !allow_line_resize) {
             target_line.style.left = `${e.clientX - target_line.style.width.split('px')[0] / 2 + window.scrollX}px`;
             target_line.style.top = `${e.clientY - target_line.style.height.split('px')[0] / 2 + window.scrollY}px`;
             positionLineMeasure(e);
@@ -115,41 +119,80 @@
     function prepareMoveLine(e) {
         const tag = e.target.tagName;
         e = e.target;
-        if(e.classList.contains('line')) {
+        if (e.classList.contains('line')) {
             target_line = e;
             mouse_pressed = true;
-        } else if(tag === 'SPAN') {
+        } else if (tag === 'SPAN') {
             target_line = e.parentElement;
             mouse_pressed = true;
         }
     }
 
     function deleteLine() {
-        if(target_line) {
+        if (target_line && target_line.classList.contains('line')) {
+            const parent = target_line.parentElement;
+            const children = parent.children.length;
             target_line.remove();
-            target_line = null;
+            target_line = parent.children[children - 2];
         }
     }
 
     function setOrientation() {
         const l = target_line.style;
-        const isWidthBigger = Math.abs(px(l.width ) - px(l.left)) < Math.abs(px(l.height) - px(l.top));
-        target_line.setAttribute('biggerwidth', isWidthBigger);
+        const isWidthBigger = Math.abs(px(l.width) - px(l.left)) < Math.abs(px(l.height) - px(l.top));
+        target_line.setAttribute('biggerwidth', isWidthBigger ? 1 : 0);
     }
 
     function prepareResizeLine(e) {
         const tag = e.target.tagName;
         e = e.target;
-        if(tag === 'BUTTON') {
+        if (tag === 'BUTTON') {
             target_line = e.parentElement;
+            target_measure = target_line.querySelector('span');
             mouse_pressed = true;
             allow_line_resize = true;
+            target_style = JSON.parse(JSON.stringify(target_line.style));
+            console.log(target_style);
+            side_pressed = e.getAttribute('side_pressed');
         } else allow_line_resize = false;
     }
 
-    function resizeLine(e) { // totototototo do
-        if(allow_line_resize) {
-            setLineMeasure(line, measure, vertex_tuple);
+    function getVertex() {
+        return [
+            [
+                {
+                    x: px(target_style.left) - window.scrollX,
+                    y: px(target_style.top) - window.scrollY + px(target_style.height)
+                },
+                {
+                    x: px(target_style.left) - window.scrollX + px(target_style.width),
+                    y: px(target_style.top) - window.scrollY
+                }
+            ],
+            [
+                {
+                    x: px(target_style.left) - window.scrollX,
+                    y: px(target_style.top) - window.scrollY
+                },
+                {
+                    x: px(target_style.left) - window.scrollX,
+                    y: px(target_style.top) - window.scrollY
+                }
+            ]
+        ];
+    }
+
+    function resizeLine(e) {
+        if (allow_line_resize && mouse_pressed) {
+            const isLeft = side_pressed;
+            const biggerwidth = target_line.getAttribute('biggerwidth');
+            const vertex = getVertex()[isLeft][biggerwidth];
+            setLineMeasure(target_line, target_measure,
+                [vertex, {
+                    x: e.clientX,
+                    y: e.clientY
+                }]);
+            positionLineMeasure(e)
         }
     }
 

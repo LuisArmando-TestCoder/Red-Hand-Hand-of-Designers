@@ -32,26 +32,31 @@
         position: absolute;
         width: 0px;
         height: 0px;
-        padding: 2.5px;
+        padding: 3px;
         background: var(--the-color);
         border: 0;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
     }
 
     button:nth-child(1) {
-        top: 0;
-        left: 0;
+        top: -2px;
+        left: -2px;
     }
 
     button:nth-child(2) {
-        bottom: 0;
-        right: 0;
+        bottom: -2px;
+        right: -2px;
     }
 
-    &[biggerwidth="true"] button {
+    &[biggerwidth="1"] button {
         cursor: ew-resize;
     }
 
-    &[biggerwidth="false"] button {
+    &[biggerwidth="0"] button {
         cursor: ns-resize;
     }
 
@@ -108,7 +113,8 @@
         display: block;
     }
 
-    &:after { // important
+    &:after {
+        // important
         // to not grab the image
         content: '';
         position: absolute;
