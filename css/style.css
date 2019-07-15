@@ -110,13 +110,15 @@ body > section {
 }
 
 #image-wrapper {
-  display: inline-block;
+  display: grid;
+  place-content: center;
   margin: 0 0 25px;
   position: relative;
 }
 #image-wrapper img {
   user-select: none;
   display: block;
+  margin: auto;
 }
 #image-wrapper:after {
   content: "";

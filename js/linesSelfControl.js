@@ -14,6 +14,7 @@
     let target_measure;
     let mouse_pressed;
     let side_pressed;
+    let origin_w;
 
     function saveScrollPosition() {
         localStorage.setItem('scrollY', window.scrollY);
@@ -54,7 +55,6 @@
             }
             measure.textContent = line.style.height;
         }
-
     }
 
     function clickWrapper(e) {
@@ -76,7 +76,6 @@
                     target_line = line;
                     target_measure = measure;
                 }
-                // deep copy, not attach to memory
                 if (vertex_tuple.length === 2) {
                     line.classList.add('line');
                     setLineMeasure(line, measure, vertex_tuple);
@@ -134,6 +133,7 @@
     }
 
     function deleteLine() {
+        
         if (target_line && target_line.classList.contains('line')) {
             const parent = target_line.parentElement;
             const children = parent.children.length;
@@ -200,7 +200,6 @@
             const isLeft = side_pressed;
             const biggerwidth = target_line.getAttribute('biggerwidth');
             const vertex = getVertex()[isLeft][biggerwidth];
-            console.log(isLeft, biggerwidth);
             setLineMeasure(target_line, target_measure,
                 [vertex, {
                     x: e.clientX,
@@ -211,6 +210,21 @@
         }
     }
 
+    function adjustCenter() {
+        const all_lines = [...image_wrapper.getElementsByClassName('line')];
+        const left = window.innerWidth - origin_w;
+        setW();
+        all_lines.forEach(line => {
+            line.style.left = `${px(line.style.left) + left / 2}px`;
+        });
+    }
+
+    function setW(w) {
+        origin_w = w ? w : window.innerWidth;
+    }
+
+    setW();
+
     M.subscribe('move-line', moveLine);
     M.subscribe('set-line', clickWrapper);
     M.subscribe('set-line', setOrientation);
@@ -219,17 +233,18 @@
     M.subscribe('prepare-move-line', prepareMoveLine);
     M.subscribe('prepare-resize-line', prepareResizeLine);
     M.subscribe('resize-line', resizeLine);
+    M.subscribe('window-resize', adjustCenter);
 
     window.addEventListener('scroll', saveScrollPosition);
-    image_wrapper.addEventListener('click', M.publish('set-line').topic);
+    window.addEventListener('resize', M.publish('window-resize').topic);
 
+    image_wrapper.addEventListener('click', M.publish('set-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('preview-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('move-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('resize-line').topic);
-
     image_wrapper.addEventListener('mousedown', M.publish('prepare-move-line').topic);
     image_wrapper.addEventListener('mousedown', M.publish('prepare-resize-line').topic);
-
     image_wrapper.addEventListener('mouseup', () => mouse_pressed = false);
+    
     delete_line.addEventListener('click', M.publish('delete-line').topic);
 })();

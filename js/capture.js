@@ -17,13 +17,24 @@
     });
   }
 
+  function rePositionLines() {
+    const height = image_wrapper.querySelector('img').height;
+    const lines = [...image_wrapper.getElementsByClassName('line')];
+    console.log(lines);
+    lines.forEach(line => 
+      line.style.top = `${px(line.style.top) + height}px`
+    );
+  }
+
   function readerLoaded(e) {
     const img = document.createElement('img');
     img.src = e.target.result;
-    images.push(img.src);
-    image_wrapper.innerHTML = '';
-    image_wrapper.appendChild(img);
-    localStorage.setItem('files', JSON.stringify(images));
+    image_wrapper.insertBefore(img, image_wrapper.childNodes[0]);
+    img.addEventListener('load', e => {
+      images.push(link.href);
+      localStorage.setItem('files', JSON.stringify(images));
+      rePositionLines();
+    });
   }
 
   function renderFromStorage() {
@@ -41,7 +52,6 @@
       onrendered(canvas) {
         canvas.toBlob(image => { // to blob method needed if the image gets too big
           image = URL.createObjectURL(image);
-          console.log(image);
           link.href = image;
           link.download = `red-hand-${name}`;
           link.click();
@@ -59,17 +69,17 @@
     }
   }
 
-  function restoreScroll() {
-    const ls = localStorage;
-    window.scrollTo(ls.getItem('scrollX'), ls.getItem('scrollY'));
-  }
-
   function deliverKeyCall(e) {
     switch (e.which) {
       case 81: // q and Q
         M.publish('create-line').topic(e);
         break;
     }
+  }
+
+  function restoreScroll() {
+    const ls = localStorage;
+    window.scrollTo(ls.getItem('scrollX'), ls.getItem('scrollY'));
   }
 
   if(localStorage.getItem('files')) {
