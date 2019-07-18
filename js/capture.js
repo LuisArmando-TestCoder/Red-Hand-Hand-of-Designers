@@ -30,6 +30,7 @@
     const img = document.createElement('img');
     img.src = e.target.result;
     image_wrapper.insertBefore(img, image_wrapper.childNodes[0]);
+    console.log(img.src);
     img.addEventListener('load', e => {
       images.push(link.href);
       localStorage.setItem('files', JSON.stringify(images));

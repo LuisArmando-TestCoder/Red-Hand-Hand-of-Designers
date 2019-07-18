@@ -1,3 +1,11 @@
 @import './helpers/variables';
 @import './helpers/global';
-@import './layout';
+
+@import './layout/conf';
+
+@import './components/download';
+@import './components/hide';
+@import './components/image-wrapper';
+@import './components/line';
+@import './components/trigger';
+@import './components/images-controller';

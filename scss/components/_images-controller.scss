@@ -1,0 +1,64 @@
+#images-controller {
+    z-index: 1;
+    overflow-y: auto;
+    list-style: none;
+    position: fixed;
+    height: 100vh;
+    width: 75px;
+    left: 0;
+    margin: 0;
+    padding: 50px 25px;
+    padding-right: 135px;
+    box-sizing: border-box;
+    background: #0008;
+
+    li {
+        margin: 20px 0;
+        position: relative;
+    }
+
+    li>img {
+        cursor: pointer;
+        width: 75px;
+        height: 75px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+
+    li>img:hover+button,
+    button:hover {
+        opacity: 1;
+    }
+
+    button {
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+        background: #0008;
+        padding: 12.5px;
+        border: 0;
+        top: 10px;
+        right: -125px;
+        position: absolute;
+        transition: 0.25s;
+        -webkit-transition: 0.25s;
+        -moz-transition: 0.25s;
+        -ms-transition: 0.25s;
+        -o-transition: 0.25s;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+
+    button img {
+        height: 25px;
+        width: 25px;
+    }
+}

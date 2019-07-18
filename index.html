@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +14,8 @@
 
 <body>
     <section class="top">
-        <input screenShotHide multiple="multiple" type="file" name="image" id="image-input">
-        <i screenShotHide class="hints hide">Where advices belong</i>
+        <input accept=".vga,.png,.jpg,.jpeg,.svg,.gif" screenShotHide multiple="multiple" type="file" name="image"
+            id="image-input">
     </section>
     <section class="bottom">
         <div screenShotHide class="conf hide">
@@ -22,9 +23,8 @@
         </div>
         <a screenShotHide id="download" class="hide">Download</a>
     </section>
-    <div id="image-wrapper">
-        <!-- <div class="line"><span>300px</span></div> -->
-    </div>
+    <ul id="images-controller"></ul>
+    <div id="image-wrapper"></div>
     <script src="js/capture.js"></script>
     <script src="js/linesSelfControl.js"></script>
     <script src="js/imagesControl.js"></script>
