@@ -2,6 +2,10 @@
   --the-color: #f00;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: #101010;
@@ -132,6 +136,7 @@ body > section {
 #images-controller {
   z-index: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   list-style: none;
   position: fixed;
   height: 100vh;
@@ -141,13 +146,14 @@ body > section {
   padding: 50px 25px;
   padding-right: 135px;
   box-sizing: border-box;
-  background: #0008;
+  background: #0000;
+  direction: rtl;
 }
 #images-controller li {
-  margin: 20px 0;
+  margin: 20px -70px;
   position: relative;
 }
-#images-controller li > img {
+#images-controller li a > img {
   cursor: pointer;
   width: 75px;
   height: 75px;
@@ -159,8 +165,7 @@ body > section {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
-#images-controller li > img:hover + button,
-#images-controller button:hover {
+#images-controller li:hover button {
   opacity: 1;
 }
 #images-controller button {
@@ -168,10 +173,10 @@ body > section {
   opacity: 0;
   cursor: pointer;
   background: #0008;
-  padding: 12.5px;
+  padding: 7.5px;
   border: 0;
-  top: 10px;
-  right: -125px;
+  top: 20px;
+  right: -34px;
   position: absolute;
   transition: 0.25s;
   -webkit-transition: 0.25s;
@@ -185,8 +190,8 @@ body > section {
   -o-border-radius: 50%;
 }
 #images-controller button img {
-  height: 25px;
-  width: 25px;
+  height: 17.5px;
+  width: 17.5px;
 }
 
 /*# sourceMappingURL=style.css.map */

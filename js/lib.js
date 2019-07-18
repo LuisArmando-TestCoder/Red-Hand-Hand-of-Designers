@@ -27,3 +27,7 @@ HTMLElement.prototype.addEventListeners = function(eventsNames, callbackStack, o
 function px(str) {
     return +str.split('px')[0];
 }
+
+function getChildIndex(child) {
+    return +[...child.parentElement.children].indexOf(child);
+}
