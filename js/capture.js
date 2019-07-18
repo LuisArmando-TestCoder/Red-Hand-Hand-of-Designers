@@ -37,10 +37,10 @@
     });
   }
 
-  function renderFromStorage() {
-    const localImages = JSON.parse(localStorage.getItem('files'));
-    localImages.forEach(img => readerLoaded({target: {result: img}}));
-  }
+  // function renderFromStorage() {
+  //   const localImages = JSON.parse(localStorage.getItem('files'));
+  //   localImages.forEach(img => readerLoaded({target: {result: img}}));
+  // }
 
   function removeHide() {
     screen_shot_hide.forEach(elem => elem.classList.remove('hide'));
@@ -82,10 +82,10 @@
     window.scrollTo(ls.getItem('scrollX'), ls.getItem('scrollY'));
   }
 
-  if(localStorage.getItem('files')) {
-    renderFromStorage();
-    removeHide();
-  }
+  // if(localStorage.getItem('files')) {
+  //   renderFromStorage();
+  //   removeHide();
+  // }
 
   M.subscribe('prepare-capture', readerLoaded);
   M.subscribe('prepare-capture', removeHide);
