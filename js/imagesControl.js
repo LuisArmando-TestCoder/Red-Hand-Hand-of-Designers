@@ -1,7 +1,6 @@
 (function () {
     const imagesController = document.getElementById('images-controller');
     const imageWrapper = document.getElementById('image-wrapper');
-    let target_li;
 
     function renderSideBar() {
         const images = [...imageWrapper.querySelectorAll('img')];

@@ -58,7 +58,7 @@
     }
 
     function clickWrapper(e) {
-        if (e.target.id === 'image-wrapper') {
+        if (e.target.className === 'imgSegment') {
             if (allow_line_creation && !allow_line_resize) {
                 const line = document.createElement('div');
                 const measure = document.createElement('span');
@@ -72,7 +72,7 @@
                     line.appendChild(buttonLeft);
                     line.appendChild(buttonRight);
                     line.appendChild(measure);
-                    image_wrapper.appendChild(line);
+                    e.target.appendChild(line);
                     target_line = line;
                     target_measure = measure;
                 }
@@ -103,7 +103,7 @@
                 target_line.style.width.split('px')[0] / 2 + 
                 window.scrollX}px`;
 
-                target_line.style.top = `${e.clientY - 
+            target_line.style.top = `${e.clientY - 
                 target_line.style.height.split('px')[0] / 2 + 
                 window.scrollY}px`;
             positionLineMeasure(e);
@@ -133,21 +133,19 @@
     }
 
     function deleteLine(e) {
-        if(e.key.toLowerCase() === "d") {
-            if (target_line && target_line.classList.contains('line')) {
-                const parent = target_line.parentElement;
-                const children = parent.children.length;
-                target_line.remove();
-                target_line = parent.children[children - 2];
-            }
+        if (target_line && target_line.classList.contains('line')) {
+            const parent = target_line.parentElement;
+            const children = parent.children.length;
+            target_line.remove();
+            target_line = parent.children[children - 2];
         }
     }
 
     function setOrientation() {
         const l = target_line.style;
-        const isWidthBigger = 
-        Math.abs(px(l.width) - px(l.left)) + window.scrollX < 
-        Math.abs(px(l.height) - px(l.top)) + window.scrollY;
+        const isWidthBigger =
+            Math.abs(px(l.width) - px(l.left)) + window.scrollX <
+            Math.abs(px(l.height) - px(l.top)) + window.scrollY;
         target_line.setAttribute('biggerwidth', isWidthBigger ? 1 : 0);
         setMouseOrientation();
     }
@@ -173,8 +171,7 @@
 
     function getVertex() {
         return [
-            [
-                {
+            [{
                     x: px(target_style.left) - window.scrollX,
                     y: px(target_style.top) - window.scrollY + px(target_style.height)
                 },
@@ -183,8 +180,7 @@
                     y: px(target_style.top) - window.scrollY + px(target_style.height)
                 }
             ],
-            [
-                {
+            [{
                     x: px(target_style.left) - window.scrollX,
                     y: px(target_style.top) - window.scrollY
                 },
@@ -238,8 +234,13 @@
 
     window.addEventListener('scroll', saveScrollPosition);
     window.addEventListener('resize', M.publish('window-resize').topic);
-    window.addEventListener('keypress', M.publish('delete-line').topic);
+    window.addEventListener('keydown', e => {
+        if(e.key === 'Backspace') {
+            M.publish('delete-line').topic(e);
+        }
+    });
 
+    delete_line.addEventListener('click', M.publish('set-line').topic);
     image_wrapper.addEventListener('click', M.publish('set-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('preview-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('move-line').topic);
@@ -247,5 +248,5 @@
     image_wrapper.addEventListener('mousedown', M.publish('prepare-move-line').topic);
     image_wrapper.addEventListener('mousedown', M.publish('prepare-resize-line').topic);
     image_wrapper.addEventListener('mouseup', () => mouse_pressed = false);
-    
+
 })();

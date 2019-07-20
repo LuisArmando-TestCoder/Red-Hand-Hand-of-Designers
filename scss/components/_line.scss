@@ -4,7 +4,7 @@
     color: var(--the-color);
     text-align: center;
     position: absolute;
-    z-index: 1; // important
+    z-index: 2; // important
     // the put itself over the after below
     display: flex;
     justify-content: center;

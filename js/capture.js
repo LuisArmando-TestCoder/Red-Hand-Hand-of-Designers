@@ -17,23 +17,29 @@
     });
   }
 
-  function rePositionLines() {
-    const height = image_wrapper.querySelector('img').height;
-    const lines = [...image_wrapper.getElementsByClassName('line')];
-    console.log(lines);
-    lines.forEach(line => 
-      line.style.top = `${px(line.style.top) + height}px`
-    );
-  }
+  // function rePositionLines() {
+  //   const height = image_wrapper.querySelector('img').height;
+  //   const lines = [...image_wrapper.getElementsByClassName('line')];
+  //   console.log(lines);
+  //   lines.forEach(line => 
+  //     line.style.top = `${px(line.style.top) + height}px`
+  //   );
+  // }
 
   function readerLoaded(e) {
     const img = document.createElement('img');
+    const imgSegment = document.createElement('div');
     img.src = e.target.result;
-    image_wrapper.insertBefore(img, image_wrapper.childNodes[0]);
+    imgSegment.className = 'imgSegment';
+    imgSegment.appendChild(img);
+    image_wrapper.insertBefore(imgSegment, image_wrapper.childNodes[0]);
     img.addEventListener('load', e => {
+      console.log(img.width, img.height);
+      imgSegment.style.setProperty('--width', `${img.width}px`);
+      imgSegment.style.setProperty('--height', `${img.height}px`);
       images.push(link.href);
       localStorage.setItem('files', JSON.stringify(images));
-      rePositionLines();
+      // rePositionLines();
     });
   }
 

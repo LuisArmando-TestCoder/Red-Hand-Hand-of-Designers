@@ -1,3 +1,7 @@
 .bottom {
     bottom: 0;
+    z-index: 3;
+    button {
+        cursor: pointer;
+    }
 }
