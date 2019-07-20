@@ -134,26 +134,88 @@ body > section {
 }
 
 #images-controller {
-  z-index: 1;
+  z-index: 2;
   overflow-y: auto;
   overflow-x: hidden;
   list-style: none;
   position: fixed;
   height: 100vh;
   width: 75px;
-  left: 0;
+  left: -160px;
   margin: 0;
-  padding: 50px 25px;
+  padding: 50px;
   padding-right: 135px;
   box-sizing: border-box;
   background: #0000;
   direction: rtl;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+#images-controller::after, #images-controller::before {
+  content: "";
+  position: fixed;
+  margin: auto;
+}
+#images-controller::after {
+  width: 5px;
+  height: 5px;
+  background: #fff;
+  top: 0;
+  left: 6.5px;
+  bottom: 0;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  box-shadow: 0 -20px #fff, 0 20px #fff;
+}
+#images-controller::before {
+  width: 25px;
+  height: 85px;
+  background: #fff0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  display: block;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  border-radius: 0 10px 10px 0;
+  -webkit-border-radius: 0 10px 10px 0;
+  -moz-border-radius: 0 10px 10px 0;
+  -ms-border-radius: 0 10px 10px 0;
+  -o-border-radius: 0 10px 10px 0;
+  border: 3px solid #fff;
+  border-width: 3px 3px 3px 0;
+  box-shadow: 0 0 20px -5px #000;
+}
+#images-controller:hover {
+  left: 0;
+}
+#images-controller:hover::before, #images-controller:hover::after {
+  left: -50px;
+  box-shadow: 0 0px, 0 0px;
+  height: 0px;
 }
 #images-controller li {
   margin: 20px -70px;
   position: relative;
 }
 #images-controller li a > img {
+  position: relative;
+  z-index: 1;
   cursor: pointer;
   width: 75px;
   height: 75px;
@@ -169,25 +231,25 @@ body > section {
   opacity: 1;
 }
 #images-controller button {
+  cursor: pointer;
   outline: none;
   opacity: 0;
-  cursor: pointer;
   background: #0008;
-  padding: 7.5px;
+  padding: 7.5px 7.5px 7.5px 14px;
   border: 0;
   top: 20px;
-  right: -34px;
+  right: 0;
   position: absolute;
   transition: 0.25s;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
   -ms-transition: 0.25s;
   -o-transition: 0.25s;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  border-radius: 0 50% 50% 0;
+  -webkit-border-radius: 0 50% 50% 0;
+  -moz-border-radius: 0 50% 50% 0;
+  -ms-border-radius: 0 50% 50% 0;
+  -o-border-radius: 0 50% 50% 0;
 }
 #images-controller button img {
   height: 17.5px;

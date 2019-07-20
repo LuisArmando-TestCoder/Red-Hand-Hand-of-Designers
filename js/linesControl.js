@@ -132,13 +132,14 @@
         }
     }
 
-    function deleteLine() {
-        
-        if (target_line && target_line.classList.contains('line')) {
-            const parent = target_line.parentElement;
-            const children = parent.children.length;
-            target_line.remove();
-            target_line = parent.children[children - 2];
+    function deleteLine(e) {
+        if(e.key.toLowerCase() === "d") {
+            if (target_line && target_line.classList.contains('line')) {
+                const parent = target_line.parentElement;
+                const children = parent.children.length;
+                target_line.remove();
+                target_line = parent.children[children - 2];
+            }
         }
     }
 
@@ -237,6 +238,7 @@
 
     window.addEventListener('scroll', saveScrollPosition);
     window.addEventListener('resize', M.publish('window-resize').topic);
+    window.addEventListener('keypress', M.publish('delete-line').topic);
 
     image_wrapper.addEventListener('click', M.publish('set-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('preview-line').topic);
@@ -246,5 +248,4 @@
     image_wrapper.addEventListener('mousedown', M.publish('prepare-resize-line').topic);
     image_wrapper.addEventListener('mouseup', () => mouse_pressed = false);
     
-    delete_line.addEventListener('click', M.publish('delete-line').topic);
 })();
