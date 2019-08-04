@@ -1,7 +1,7 @@
-@import './helpers/variables';
-@import './helpers/global';
+@import './global';
 
-@import './layout/conf';
+@import './helpers/variables';
+@import './helpers/mixins';
 
 @import './components/download';
 @import './components/hide';
@@ -10,3 +10,6 @@
 @import './components/trigger';
 @import './components/images-controller';
 @import './components/toolsMenu';
+
+@import './layout/conf';
+@import './layout/tools.scss';
