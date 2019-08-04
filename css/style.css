@@ -254,7 +254,77 @@ body > section {
   width: 17.5px;
 }
 
+.principalTools {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/*.image-file {
+  background-image: url("../img/image.png");
+	@include btnToolStyles;
+}*/
+.arrow {
+  background-image: url("../img/Mouse_selection.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.line {
+  background-image: url("../img/Line.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.text {
+  background-image: url("../img/Text.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.eraser {
+  background-image: url("../img/Eraser.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.rule {
+  background-image: url("../img/Ruler.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.crop {
+  background-image: url("../img/Crop.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
 .top {
+  height: 60px;
   background-color: #73060F;
 }
 

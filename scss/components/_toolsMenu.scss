@@ -1,3 +1,40 @@
-.top{
-    background-color: $primary-color;
+//Tools menu styles
+.principalTools {
+	margin: 0 auto;
+  padding: 10px;
+}
+
+/*.image-file {
+  background-image: url("../img/image.png");
+	@include btnToolStyles;
+}*/
+
+.arrow {
+  background-image: url("../img/Mouse_selection.png");
+	@include btnToolStyles;
+}
+
+.line {
+  background-image: url("../img/Line.png");
+	@include btnToolStyles;
+}
+
+.text {
+  background-image: url("../img/Text.png");
+	@include btnToolStyles;
+}
+
+.eraser {
+  background-image: url("../img/Eraser.png");
+	@include btnToolStyles;
+}
+
+.rule {
+  background-image: url("../img/Ruler.png");
+	@include btnToolStyles;
+}
+
+.crop {
+  background-image: url("../img/Crop.png");
+	@include btnToolStyles;
 }
