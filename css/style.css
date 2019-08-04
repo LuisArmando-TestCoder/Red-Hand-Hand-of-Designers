@@ -4,7 +4,7 @@ html {
 
 body {
   margin: 0;
-  background: #101010;
+  background: #D8D8D8;
 }
 body > section {
   z-index: 2;
@@ -273,7 +273,7 @@ body > section {
   padding: 10px 10px;
 }
 
-.line {
+.lineTool {
   background-image: url("../img/Line.png");
   background-color: transparent;
   background-position: center;
@@ -321,6 +321,22 @@ body > section {
   background-size: contain;
   border: none;
   padding: 10px 10px;
+}
+
+.delete {
+  background-image: url("../../img/");
+}
+
+.save {
+  background-image: url("");
+}
+
+.download {
+  background-image: url("");
+}
+
+.settings {
+  background-image: url("");
 }
 
 .top {

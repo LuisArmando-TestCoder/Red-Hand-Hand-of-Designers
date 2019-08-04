@@ -14,7 +14,7 @@
 	@include btnToolStyles;
 }
 
-.line {
+.lineTool {
   background-image: url("../img/Line.png");
 	@include btnToolStyles;
 }
@@ -37,4 +37,24 @@
 .crop {
   background-image: url("../img/Crop.png");
 	@include btnToolStyles;
+}
+
+.actionTools{
+	
+}
+
+.delete{
+	background-image: url('../../img/');
+}
+
+.save{
+	background-image: url('');
+}
+
+.download{
+	background-image: url('');
+}
+
+.settings{
+	background-image: url('');
 }
