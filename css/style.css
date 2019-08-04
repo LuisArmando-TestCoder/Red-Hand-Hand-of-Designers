@@ -1,14 +1,10 @@
-:root {
-  --the-color: #f00;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  background: #101010;
+  background: #D8D8D8;
 }
 body > section {
   z-index: 2;
@@ -19,12 +15,8 @@ body > section {
   justify-content: space-between;
 }
 
-.bottom {
-  bottom: 0;
-  z-index: 3;
-}
-.bottom button {
-  cursor: pointer;
+:root {
+  --the-color: #f00;
 }
 
 #download {
@@ -262,8 +254,102 @@ body > section {
   width: 17.5px;
 }
 
+.principalTools {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/*.image-file {
+  background-image: url("../img/image.png");
+	@include btnToolStyles;
+}*/
+.arrow {
+  background-image: url("../img/Mouse_selection.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.lineTool {
+  background-image: url("../img/Line.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.text {
+  background-image: url("../img/Text.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.eraser {
+  background-image: url("../img/Eraser.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.rule {
+  background-image: url("../img/Ruler.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.crop {
+  background-image: url("../img/Crop.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.delete {
+  background-image: url("../../img/");
+}
+
+.save {
+  background-image: url("");
+}
+
+.download {
+  background-image: url("");
+}
+
+.settings {
+  background-image: url("");
+}
+
 .top {
+  height: 60px;
   background-color: #73060F;
+}
+
+.bottom {
+  bottom: 0;
+  z-index: 3;
+}
+.bottom button {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
