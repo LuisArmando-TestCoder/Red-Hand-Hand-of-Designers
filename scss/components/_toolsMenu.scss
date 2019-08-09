@@ -1,6 +1,6 @@
 //Tools menu styles
 .principalTools {
-	margin: 0 auto;
+  margin: 0 auto;
   padding: 10px;
 }
 
@@ -11,50 +11,55 @@
 
 .arrow {
   background-image: url("../img/Mouse_selection.png");
-	@include btnToolStyles;
+  @include btnToolStyles;
 }
 
 .lineTool {
   background-image: url("../img/Line.png");
-	@include btnToolStyles;
+  @include btnToolStyles;
 }
 
 .text {
   background-image: url("../img/Text.png");
-	@include btnToolStyles;
+  @include btnToolStyles;
 }
 
 .eraser {
   background-image: url("../img/Eraser.png");
-	@include btnToolStyles;
+  @include btnToolStyles;
 }
 
 .rule {
   background-image: url("../img/Ruler.png");
-	@include btnToolStyles;
+  @include btnToolStyles;
 }
 
 .crop {
   background-image: url("../img/Crop.png");
+  @include btnToolStyles;
+}
+
+.actionTools {
+	margin: 0 auto;
+  padding: 10px;
+}
+
+.delete {
+	background-image: url("../img/Delete\ file.png");
 	@include btnToolStyles;
 }
 
-.actionTools{
-	
+.save {
+	background-image: url("../img/Save.png");
+	@include btnToolStyles;
 }
 
-.delete{
-	background-image: url('../../img/');
+.download {
+	background-image: url("../img/Download.png");
+	@include btnToolStyles;
 }
 
-.save{
-	background-image: url('');
-}
-
-.download{
-	background-image: url('');
-}
-
-.settings{
-	background-image: url('');
+.settings {
+	background-image: url("../img/Config.png");
+	@include btnToolStyles;
 }

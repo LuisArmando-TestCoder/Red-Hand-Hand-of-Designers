@@ -323,20 +323,49 @@ body > section {
   padding: 10px 10px;
 }
 
+.actionTools {
+  margin: 0 auto;
+  padding: 10px;
+}
+
 .delete {
-  background-image: url("../../img/");
+  background-image: url("../img/Delete file.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
 }
 
 .save {
-  background-image: url("");
+  background-image: url("../img/Save.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
 }
 
 .download {
-  background-image: url("");
+  background-image: url("../img/Download.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
 }
 
 .settings {
-  background-image: url("");
+  background-image: url("../img/Config.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
 }
 
 .top {
