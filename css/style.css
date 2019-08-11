@@ -19,50 +19,6 @@ body > section {
   --the-color: #f00;
 }
 
-#download {
-  background: #ff0;
-  cursor: pointer;
-  color: #000;
-  padding: 5px 20px;
-  text-transform: uppercase;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
-[screenShotHide] {
-  text-align: center;
-  color: #fff;
-}
-
-.hide {
-  display: none;
-}
-
-#image-wrapper {
-  display: grid;
-  place-content: center;
-  margin: 0 0 25px;
-}
-#image-wrapper img {
-  position: absolute;
-  user-select: none;
-  display: block;
-  margin: auto;
-}
-#image-wrapper .imgSegment::after {
-  display: block;
-  content: "";
-  width: var(--width);
-  height: var(--height);
-  top: 0;
-  left: 0;
-  position: relative;
-  z-index: 1;
-}
-
 .line {
   cursor: pointer;
   background: var(--the-color);
@@ -126,9 +82,118 @@ body > section {
   margin-left: -65px;
 }
 
-.activated {
-  background: #fff;
-  box-shadow: 0 0 10px -5px #fff;
+.principalTools {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/*.image-file {
+  background-image: url("../img/image.png");
+	@include btnToolStyles;
+}*/
+.arrow {
+  background-image: url("../img/Mouse_selection.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.lineTool {
+  background-image: url("../img/Line.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.text {
+  background-image: url("../img/Text.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.eraser {
+  background-image: url("../img/Eraser.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.rule {
+  background-image: url("../img/Ruler.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.crop {
+  background-image: url("../img/Crop.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.actionTools {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.delete {
+  background-image: url("../img/Delete file.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.save {
+  background-image: url("../img/Save.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.download {
+  background-image: url("../img/Download.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
+}
+
+.settings {
+  background-image: url("../img/Config.png");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  padding: 10px 10px;
 }
 
 #images-controller {
@@ -254,118 +319,53 @@ body > section {
   width: 17.5px;
 }
 
-.principalTools {
-  margin: 0 auto;
-  padding: 10px;
+#image-wrapper {
+  display: grid;
+  place-content: center;
+  margin: 0 0 25px;
+}
+#image-wrapper img {
+  position: absolute;
+  user-select: none;
+  display: block;
+  margin: auto;
+}
+#image-wrapper .imgSegment::after {
+  display: block;
+  content: "";
+  width: var(--width);
+  height: var(--height);
+  top: 0;
+  left: 0;
+  position: relative;
+  z-index: 1;
 }
 
-/*.image-file {
-  background-image: url("../img/image.png");
-	@include btnToolStyles;
-}*/
-.arrow {
-  background-image: url("../img/Mouse_selection.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
+[screenShotHide] {
+  text-align: center;
+  color: #fff;
 }
 
-.lineTool {
-  background-image: url("../img/Line.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
+.hide {
+  display: none;
 }
 
-.text {
-  background-image: url("../img/Text.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
+.activated {
+  background: #fff;
+  box-shadow: 0 0 10px -5px #fff;
 }
 
-.eraser {
-  background-image: url("../img/Eraser.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
-}
-
-.rule {
-  background-image: url("../img/Ruler.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
-}
-
-.crop {
-  background-image: url("../img/Crop.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
-}
-
-.actionTools {
-  margin: 0 auto;
-  padding: 10px;
-}
-
-.delete {
-  background-image: url("../img/Delete file.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
-}
-
-.save {
-  background-image: url("../img/Save.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
-}
-
-.download {
-  background-image: url("../img/Download.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
-}
-
-.settings {
-  background-image: url("../img/Config.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
+#download {
+  background: #ff0;
+  cursor: pointer;
+  color: #000;
+  padding: 5px 20px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 .top {
