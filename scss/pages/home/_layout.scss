@@ -1,1 +1,46 @@
 //Layout styles
+
+.backgroundRed {
+  background-color: $primary-color;
+  height: 100vh;
+  padding-left: 5%;
+  padding-top: 5%;
+  position: relative;
+}
+
+.backgroundWhite {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: grid;
+	grid-template-columns: 46% 1fr 20%;
+}
+
+.homePageContainer {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+}
+
+.homeDescription {
+  color: $primary-color;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  position: absolute;
+  right: 3%;
+	top: 77%;
+  text-align: right;
+  width: 242px;
+}
+
+.bntMenu {
+  color: #dfe2df;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 9.075px;
+  margin-top: 2%;
+}

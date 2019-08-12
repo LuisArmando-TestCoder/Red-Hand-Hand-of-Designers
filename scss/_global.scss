@@ -1,16 +1,33 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    background: #D8D8D8;
-    & > section {
-        z-index: 2;
-        width: 100%;
-        position: fixed;
-        display: flex;
-        background: #0008;
-        justify-content: space-between;
-    }
+  background: #d8d8d8;
+  font-family: roboto;
+  margin: 0;
+  & > section {
+    z-index: 2;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    background: #0008;
+    justify-content: space-between;
+  }
+}
+
+span {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }

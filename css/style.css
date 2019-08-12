@@ -3,8 +3,9 @@ html {
 }
 
 body {
+  background: #d8d8d8;
+  font-family: roboto;
   margin: 0;
-  background: #D8D8D8;
 }
 body > section {
   z-index: 2;
@@ -15,8 +16,286 @@ body > section {
   justify-content: space-between;
 }
 
+span {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 :root {
   --the-color: #f00;
+}
+
+.buildingText {
+  color: #73060F;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+  text-align: center;
+  letter-spacing: 8.568px;
+}
+
+.textRotate {
+  transform: rotate(270deg);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 54.77px;
+  position: absolute;
+  top: 332px;
+  left: -64px;
+}
+
+.buildingShadow {
+  width: 50px;
+  height: 90%;
+  background: rgba(216, 216, 216, 0.6);
+  clip-path: polygon(0 0, 100% 8%, 100% 95%, 0% 100%);
+  display: block;
+  position: absolute;
+  top: 0;
+  right: -49px;
+  z-index: 1;
+}
+
+.logo {
+  position: absolute;
+  top: 13%;
+  left: 10%;
+}
+
+.loginContainer {
+  grid-column: 2/4;
+  grid-row: 1;
+  justify-self: center;
+}
+
+.firstBuidingLayer {
+  position: absolute;
+  right: 0;
+  display: grid;
+  justify-content: end;
+  top: 5%;
+}
+
+.roof,
+.floor,
+.firstFloorContainer,
+.nextRoof,
+.nextFloor,
+.wall {
+  background-color: white;
+  display: block;
+}
+
+.roof,
+.floor {
+  text-align: left;
+  margin-bottom: 20px;
+  position: relative;
+  right: -51%;
+}
+.roof::after,
+.floor::after {
+  content: "";
+  background-color: #c4c4c4;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+  display: block;
+  width: 265px;
+  height: 21px;
+  top: 100%;
+  left: 0;
+  position: absolute;
+}
+
+.roof {
+  height: 71px;
+  padding-left: 20px;
+  padding-top: 20px;
+  width: 246px;
+}
+
+.floor {
+  height: 55px;
+  padding-left: 20px;
+  padding-top: 10px;
+  width: 245px;
+}
+
+.firstFloorContainer {
+  width: 535px;
+  height: 344px;
+}
+
+.windows,
+.window {
+  display: block;
+  height: 60px;
+}
+
+.windows {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+  margin-top: 11%;
+  justify-items: center;
+}
+
+.window {
+  width: 100%;
+  background-color: #c4c4c4;
+}
+
+.secondBuildingLayer {
+  margin-top: 12vh;
+  grid-column: 1/2;
+  grid-row: 1;
+}
+
+.nextFloor,
+.nextRoof,
+.lastFloor,
+.wall {
+  border: 1px solid #979797;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.nextRoof,
+.nextFloor {
+  text-align: left;
+  padding-left: 50px;
+  position: relative;
+  width: 265px;
+}
+.nextRoof::after,
+.nextFloor::after {
+  content: "";
+  display: block;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+  background: #d8d8d8;
+  height: 21px;
+  position: absolute;
+  width: 264px;
+  top: 100%;
+  left: 0;
+}
+
+.nextRoof {
+  height: 90px;
+  padding-top: 15px;
+}
+
+.nextFloor,
+.lastFloor {
+  height: 60px;
+}
+
+.lastFloor {
+  width: 265px;
+}
+
+.entry {
+  width: 104px;
+  height: 66px;
+  background: #d8d8d8;
+  display: block;
+  position: absolute;
+  top: 669px;
+}
+
+.wall {
+  width: 161px;
+  height: 85px;
+  position: absolute;
+  left: 104px;
+  top: 669px;
+}
+
+.logIn,
+.subscribe {
+  display: inline-block;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 4.07px;
+}
+
+.link {
+  color: #e20606;
+  display: inline-block;
+  padding-right: 30px;
+}
+
+.btnGoToRLG {
+  width: 79px;
+  height: 100%;
+  background-color: #73060F;
+  grid-column: 3/4;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.backgroundRed {
+  background-color: #73060F;
+  height: 100vh;
+  padding-left: 5%;
+  padding-top: 5%;
+  position: relative;
+}
+
+.backgroundWhite {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 46% 1fr 20%;
+}
+
+.homePageContainer {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+}
+
+.homeDescription {
+  color: #73060F;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  position: absolute;
+  right: 3%;
+  top: 77%;
+  text-align: right;
+  width: 242px;
+}
+
+.bntMenu {
+  color: #dfe2df;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 9.075px;
+  margin-top: 2%;
 }
 
 .line {
