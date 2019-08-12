@@ -55,6 +55,10 @@
         cursor: ns-resize;
     }
 
+    &[target_line] {
+        box-shadow: 0 0 5px -0.25px #00f;
+    }
+
     [vertical="true"] {
         margin-top: 35px;
     }

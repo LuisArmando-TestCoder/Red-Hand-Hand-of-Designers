@@ -34,7 +34,6 @@
     imgSegment.appendChild(img);
     image_wrapper.insertBefore(imgSegment, image_wrapper.childNodes[0]);
     img.addEventListener('load', e => {
-      console.log(img.width, img.height);
       imgSegment.style.setProperty('--width', `${img.width}px`);
       imgSegment.style.setProperty('--height', `${img.height}px`);
       images.push(link.href);

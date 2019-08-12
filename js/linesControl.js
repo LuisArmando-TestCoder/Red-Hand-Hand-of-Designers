@@ -1,6 +1,6 @@
 (function () {
     const image_wrapper = document.getElementById('image-wrapper');
-    const delete_line = document.getElementById('delete-line');
+    const eraser = document.querySelector('.eraser');
     const vertex = {
         x: null,
         y: null
@@ -15,6 +15,8 @@
     let mouse_pressed;
     let side_pressed;
     let origin_w;
+    // let isLineResizing = false;
+    
 
     function saveScrollPosition() {
         localStorage.setItem('scrollY', window.scrollY);
@@ -58,7 +60,13 @@
     }
 
     function clickWrapper(e) {
-        if (e.target.className === 'imgSegment') {
+        // let isLineResizing = false;
+        // if (e.target.tagName === 'BUTTON') {
+        //     e.target = e.target.parentElement.parentElement;
+        //     isLineResizing = true;
+        // }
+
+        if (e.target.className === 'imgSegment' || isLineResizing) {
             if (allow_line_creation && !allow_line_resize) {
                 const line = document.createElement('div');
                 const measure = document.createElement('span');
@@ -66,6 +74,7 @@
                 const buttonRight = document.createElement('button');
 
                 includeVertex(e);
+
                 if (vertex_tuple.length === 1) {
                     buttonLeft.setAttribute('side_pressed', '0');
                     buttonRight.setAttribute('side_pressed', '1');
@@ -73,7 +82,7 @@
                     line.appendChild(buttonRight);
                     line.appendChild(measure);
                     e.target.appendChild(line);
-                    target_line = line;
+                    setTargetLine(line);
                     target_measure = measure;
                 }
                 if (vertex_tuple.length === 2) {
@@ -124,10 +133,10 @@
         const tag = e.target.tagName;
         e = e.target;
         if (e.classList.contains('line')) {
-            target_line = e;
+            setTargetLine(e);
             mouse_pressed = true;
         } else if (tag === 'SPAN') {
-            target_line = e.parentElement;
+            setTargetLine(e.parentElement);
             mouse_pressed = true;
         }
     }
@@ -137,7 +146,7 @@
             const parent = target_line.parentElement;
             const children = parent.children.length;
             target_line.remove();
-            target_line = parent.children[children - 2];
+            setTargetLine(parent.children[children - 2]);
         }
     }
 
@@ -159,8 +168,8 @@
     function prepareResizeLine(e) {
         const tag = e.target.tagName;
         e = e.target;
-        if (tag === 'BUTTON') {
-            target_line = e.parentElement;
+        if (tag === 'BUTTON' && !allow_line_resize) {
+            setTargetLine(e.parentElement);
             target_measure = target_line.querySelector('span');
             mouse_pressed = true;
             allow_line_resize = true;
@@ -192,7 +201,7 @@
         ];
     }
 
-    function resizeLine(e) {
+    function resizeLine(e) { ///////////////////////////////
         if (allow_line_resize && mouse_pressed) {
             const isLeft = side_pressed;
             const biggerwidth = target_line.getAttribute('biggerwidth');
@@ -220,6 +229,13 @@
         origin_w = w ? w : window.innerWidth;
     }
 
+    function setTargetLine(target) {
+        const all_lines = [...image_wrapper.querySelectorAll('[target_line]')];
+        target_line = target;
+        all_lines.forEach(line => line.removeAttribute('target_line'));
+        target_line.setAttribute('target_line', '')
+    }
+
     setW();
 
     M.subscribe('move-line', moveLine);
@@ -239,8 +255,8 @@
             M.publish('delete-line').topic(e);
         }
     });
+    eraser.addEventListener('click', M.publish('delete-line').topic);
 
-    delete_line.addEventListener('click', M.publish('set-line').topic);
     image_wrapper.addEventListener('click', M.publish('set-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('preview-line').topic);
     image_wrapper.addEventListener('mousemove', M.publish('move-line').topic);
@@ -248,5 +264,4 @@
     image_wrapper.addEventListener('mousedown', M.publish('prepare-move-line').topic);
     image_wrapper.addEventListener('mousedown', M.publish('prepare-resize-line').topic);
     image_wrapper.addEventListener('mouseup', () => mouse_pressed = false);
-
 })();

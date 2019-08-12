@@ -24,6 +24,10 @@ HTMLElement.prototype.addEventListeners = function(eventsNames, callbackStack, o
     });
 }
 
+HTMLElement.prototype.getProp = function(prop) {
+    return window.getComputedStyle(this, null).getPropertyValue(prop);
+};
+
 function px(str) {
     return +str.split('px')[0];
 }

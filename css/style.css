@@ -1,7 +1,3 @@
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: #d8d8d8;
   font-family: roboto;
@@ -10,7 +6,8 @@ body {
 body > section {
   z-index: 2;
   width: 100%;
-  position: fixed;
+  position: sticky;
+  top: 0;
   display: flex;
   background: #0008;
   justify-content: space-between;
@@ -27,6 +24,7 @@ ul {
 li {
   list-style: none;
 }
+
 
 a {
   text-decoration: none;
@@ -348,6 +346,9 @@ a {
 .line[mouse_orientation="1"] button {
   cursor: ns-resize;
 }
+.line[target_line] {
+  box-shadow: 0 0 5px -0.25px #00f;
+}
 .line [vertical=true] {
   margin-top: 35px;
 }
@@ -361,118 +362,121 @@ a {
   margin-left: -65px;
 }
 
-.principalTools {
-  margin: 0 auto;
-  padding: 10px;
+.top {
+  z-index: 3;
+  height: 42px;
+  background-color: #73060F;
+  background: -webkit-linear-gradient(left, #73060F, #730628ee);
+  background: linear-gradient(left, #73060F, #730628ee);
+  box-shadow: 0 0 50px -15px #fff;
 }
 
-/*.image-file {
-  background-image: url("../img/image.png");
-	@include btnToolStyles;
-}*/
-.arrow {
-  background-image: url("../img/Mouse_selection.png");
+.bottom {
+  bottom: 0;
+  z-index: 3;
+}
+.bottom button {
+  cursor: pointer;
+}
+
+.invisible {
+  display: none;
+}
+
+.initial-inputs,
+.principalTools,
+.actionTools {
+  margin: 5px auto;
+  padding: 0px;
+}
+
+label[for=image-input], .tool {
+  outline: none;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+  box-shadow: 0 0 #fff0;
+}
+label[for=image-input]:hover, label[for=image-input]:focus, .tool:hover, .tool:focus {
+  cursor: pointer;
+  content: "";
+  box-shadow: 0 2.5px #ffffff;
+}
+
+label[for=image-input] {
+  position: relative;
+  padding: 8px 0;
+}
+label[for=image-input]:before {
+  content: "";
+  width: 20px;
+  height: 35px;
+  position: absolute;
+  display: block;
+  top: 5px;
+  left: 0;
+  cursor: pointer;
+}
+
+.tool {
+  margin: 0;
+  padding: 0;
   background-color: transparent;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   border: none;
   padding: 10px 10px;
+}
+
+.home {
+  background-image: url("../img/Back to home.png");
+}
+
+.image-file {
+  background-image: url("../img/image.png");
+}
+
+.arrow {
+  background-image: url("../img/Mouse_selection.png");
 }
 
 .lineTool {
   background-image: url("../img/Line.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
 }
 
 .text {
   background-image: url("../img/Text.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
 }
 
 .eraser {
   background-image: url("../img/Eraser.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
 }
 
 .rule {
   background-image: url("../img/Ruler.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
 }
 
 .crop {
   background-image: url("../img/Crop.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
-}
-
-.actionTools {
-  margin: 0 auto;
-  padding: 10px;
 }
 
 .delete {
   background-image: url("../img/Delete file.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
 }
 
 .save {
   background-image: url("../img/Save.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
 }
 
 .download {
   background-image: url("../img/Download.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
 }
 
 .settings {
   background-image: url("../img/Config.png");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  padding: 10px 10px;
 }
 
 #images-controller {
@@ -483,12 +487,11 @@ a {
   position: fixed;
   height: 100vh;
   width: 75px;
-  left: -160px;
+  left: -185px;
   margin: 0;
   padding: 50px;
   padding-right: 135px;
   box-sizing: border-box;
-  background: #0000;
   direction: rtl;
   transition: 0.5s;
   -webkit-transition: 0.5s;
@@ -502,9 +505,9 @@ a {
   margin: auto;
 }
 #images-controller::after {
-  width: 5px;
-  height: 5px;
-  background: #fff;
+  width: 10px;
+  height: 10px;
+  background: #73060F;
   top: 0;
   left: 9.5px;
   bottom: 0;
@@ -518,7 +521,7 @@ a {
   -moz-transition: 0.5s;
   -ms-transition: 0.5s;
   -o-transition: 0.5s;
-  box-shadow: 0 -20px #fff, 0 20px #fff;
+  box-shadow: 0 -20px 0 0px #73060F, 0 20px 0 0px #73060F, 0 20px 50px 5px #ffffff, 0 -20px 50px 5px #ffffff, 0 0px 50px 5px #ffffff;
 }
 #images-controller::before {
   width: 25px;
@@ -529,19 +532,16 @@ a {
   margin: auto;
   left: 0;
   display: block;
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -o-transition: 0.5s;
+  transition: 2.5s;
+  -webkit-transition: 2.5s;
+  -moz-transition: 2.5s;
+  -ms-transition: 2.5s;
+  -o-transition: 2.5s;
   border-radius: 0 10px 10px 0;
   -webkit-border-radius: 0 10px 10px 0;
   -moz-border-radius: 0 10px 10px 0;
   -ms-border-radius: 0 10px 10px 0;
   -o-border-radius: 0 10px 10px 0;
-  border: 3px solid #fff;
-  border-width: 3px 3px 3px 0;
-  box-shadow: 0 0 20px -5px #000;
 }
 #images-controller:hover {
   left: 0;
@@ -556,6 +556,7 @@ a {
   position: relative;
 }
 #images-controller li a > img {
+  box-shadow: 0 0 50px -5px #73060f;
   position: relative;
   z-index: 1;
   cursor: pointer;
@@ -573,12 +574,12 @@ a {
   opacity: 1;
 }
 #images-controller button {
+  border: 0;
   cursor: pointer;
   outline: none;
   opacity: 0;
-  background: #0008;
+  background: #00000088;
   padding: 7.5px 7.5px 7.5px 14px;
-  border: 0;
   top: 20px;
   right: 0;
   position: absolute;
@@ -596,18 +597,21 @@ a {
 #images-controller button img {
   height: 17.5px;
   width: 17.5px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 #image-wrapper {
   display: grid;
-  place-content: center;
-  margin: 0 0 25px;
+  place-items: center;
+  margin: 0 0 42px;
 }
 #image-wrapper img {
   position: absolute;
   user-select: none;
   display: block;
   margin: auto;
+  box-shadow: 0 0 100px -50px;
 }
 #image-wrapper .imgSegment::after {
   display: block;
@@ -630,34 +634,8 @@ a {
 }
 
 .activated {
-  background: #fff;
-  box-shadow: 0 0 10px -5px #fff;
-}
-
-#download {
-  background: #ff0;
-  cursor: pointer;
-  color: #000;
-  padding: 5px 20px;
-  text-transform: uppercase;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
-.top {
-  height: 60px;
-  background-color: #73060F;
-}
-
-.bottom {
-  bottom: 0;
-  z-index: 3;
-}
-.bottom button {
-  cursor: pointer;
+  background: #ffffff;
+  box-shadow: 0 0 10px -5px #ffffff;
 }
 
 /*# sourceMappingURL=style.css.map */

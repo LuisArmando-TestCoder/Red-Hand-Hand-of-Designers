@@ -1,19 +1,15 @@
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  background: #d8d8d8;
-  font-family: roboto;
-  margin: 0;
-  & > section {
-    z-index: 2;
-    width: 100%;
-    position: fixed;
-    display: flex;
-    background: #0008;
-    justify-content: space-between;
-  }
+    margin: 0;
+    background: #D8D8D8;
+    & > section {
+        z-index: 2;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        display: flex;
+        background: #0008;
+        justify-content: space-between;
+    }
 }
 
 span {
@@ -31,3 +27,5 @@ li {
 a {
   text-decoration: none;
 }
+
+
