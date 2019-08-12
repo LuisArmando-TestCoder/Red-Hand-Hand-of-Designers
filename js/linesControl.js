@@ -15,8 +15,8 @@
     let mouse_pressed;
     let side_pressed;
     let origin_w;
-    // let isLineResizing = false;
-    
+    let isLineResizing = false;
+
 
     function saveScrollPosition() {
         localStorage.setItem('scrollY', window.scrollY);
@@ -60,13 +60,15 @@
     }
 
     function clickWrapper(e) {
-        // let isLineResizing = false;
-        // if (e.target.tagName === 'BUTTON') {
-        //     e.target = e.target.parentElement.parentElement;
-        //     isLineResizing = true;
-        // }
+        isLineResizing = false;
+        if (e.target.tagName === 'BUTTON') {
+            console.log(1);
+            e.target = e.target.parentElement.parentElement;
+            isLineResizing = true;
+        }
 
         if (e.target.className === 'imgSegment' || isLineResizing) {
+            console.log(e.target);
             if (allow_line_creation && !allow_line_resize) {
                 const line = document.createElement('div');
                 const measure = document.createElement('span');
@@ -166,16 +168,19 @@
     }
 
     function prepareResizeLine(e) {
-        const tag = e.target.tagName;
-        e = e.target;
-        if (tag === 'BUTTON' && !allow_line_resize) {
-            setTargetLine(e.parentElement);
-            target_measure = target_line.querySelector('span');
-            mouse_pressed = true;
-            allow_line_resize = true;
-            target_style = JSON.parse(JSON.stringify(target_line.style));
-            side_pressed = e.getAttribute('side_pressed');
-        } else allow_line_resize = false;
+        if (!isLineResizing) {
+            const tag = e.target.tagName;
+            e = e.target;
+            if (tag === 'BUTTON' && !allow_line_resize) {
+                setTargetLine(e.parentElement);
+                target_measure = target_line.querySelector('span');
+                mouse_pressed = true;
+                allow_line_resize = true;
+                target_style = JSON.parse(JSON.stringify(target_line.style));
+                side_pressed = e.getAttribute('side_pressed');
+            } else allow_line_resize = false;
+        }
+
     }
 
     function getVertex() {
@@ -251,7 +256,7 @@
     window.addEventListener('scroll', saveScrollPosition);
     window.addEventListener('resize', M.publish('window-resize').topic);
     window.addEventListener('keydown', e => {
-        if(e.key === 'Backspace') {
+        if (e.key === 'Backspace') {
             M.publish('delete-line').topic(e);
         }
     });
