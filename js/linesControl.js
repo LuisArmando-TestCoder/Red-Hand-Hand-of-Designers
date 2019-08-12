@@ -15,7 +15,7 @@
     let mouse_pressed;
     let side_pressed;
     let origin_w;
-    let isLineResizing = false;
+    // let isLineResizing = false;
 
 
     function saveScrollPosition() {
@@ -60,15 +60,16 @@
     }
 
     function clickWrapper(e) {
-        isLineResizing = false;
-        if (e.target.tagName === 'BUTTON') {
-            console.log(1);
-            e.target = e.target.parentElement.parentElement;
-            isLineResizing = true;
-        }
+        // console.clear();
+        // isLineResizing = false;
+        // if (e.target.tagName === 'BUTTON') {
+        //     isLineResizing = true;
+        // }
 
-        if (e.target.className === 'imgSegment' || isLineResizing) {
-            console.log(e.target);
+        // if (e.target.className === 'imgSegment' || isLineResizing) {
+        if (e.target.className === 'imgSegment') {
+            // const target = isLineResizing ? e.target.parentElement.parentElement : e.target;
+            // console.log(target);
             if (allow_line_creation && !allow_line_resize) {
                 const line = document.createElement('div');
                 const measure = document.createElement('span');
@@ -83,6 +84,7 @@
                     line.appendChild(buttonLeft);
                     line.appendChild(buttonRight);
                     line.appendChild(measure);
+                    // target.appendChild(line);
                     e.target.appendChild(line);
                     setTargetLine(line);
                     target_measure = measure;
@@ -168,7 +170,7 @@
     }
 
     function prepareResizeLine(e) {
-        if (!isLineResizing) {
+        // if (!isLineResizing) {
             const tag = e.target.tagName;
             e = e.target;
             if (tag === 'BUTTON' && !allow_line_resize) {
@@ -179,8 +181,7 @@
                 target_style = JSON.parse(JSON.stringify(target_line.style));
                 side_pressed = e.getAttribute('side_pressed');
             } else allow_line_resize = false;
-        }
-
+        // }
     }
 
     function getVertex() {

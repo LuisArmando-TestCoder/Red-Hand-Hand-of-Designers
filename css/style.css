@@ -1,7 +1,6 @@
 body {
-  background: #d8d8d8;
-  font-family: roboto;
   margin: 0;
+  background: #D8D8D8;
 }
 body > section {
   z-index: 2;
@@ -24,7 +23,6 @@ ul {
 li {
   list-style: none;
 }
-
 
 a {
   text-decoration: none;
