@@ -1,65 +1,119 @@
 //Tools menu styles
-.principalTools {
-  margin: 0 auto;
-  padding: 10px;
+.top {
+  z-index: 3;
+  height: $vertical-spacing;
+  background-color: $primary-color;
+  background: -webkit-linear-gradient(left, #73060F, #730628ee);
+  background: linear-gradient(left, #73060F, #730628ee);
+  box-shadow: 0 0 50px -15px #fff;
 }
 
-/*.image-file {
+.bottom {
+  bottom: 0;
+  z-index: 3;
+
+  button {
+    cursor: pointer;
+  }
+}
+
+.invisible {
+  display: none;
+}
+
+.initial-inputs,
+.principalTools,
+.actionTools {
+  margin: 5px auto;
+  padding: 0px;
+}
+
+.principalTools {}
+
+.actionTools {}
+
+label[for="image-input"], .tool {
+  outline: none;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+  box-shadow: 0 0 #fff0;
+
+  &:hover, &:focus {
+    cursor: pointer;
+    content: '';
+    box-shadow: 0 2.5px $white;
+  }
+}
+
+label[for="image-input"] {
+  position: relative;
+  padding: 8px 0;
+
+  &:before {
+    content: '';
+    width: 20px;
+    height: 35px;
+    position: absolute;
+    display: block;
+    top: 5px;
+    left: 0;
+    cursor: pointer;
+  }
+}
+
+.tool {
+  margin: 0;
+  padding: 0;
+  @include btnToolStyles;
+}
+
+.home {
+  background-image: url("../img/Back\ to\ home.png");
+}
+
+.image-file {
   background-image: url("../img/image.png");
-	@include btnToolStyles;
-}*/
+}
 
 .arrow {
   background-image: url("../img/Mouse_selection.png");
-  @include btnToolStyles;
 }
 
 .lineTool {
   background-image: url("../img/Line.png");
-  @include btnToolStyles;
 }
 
 .text {
   background-image: url("../img/Text.png");
-  @include btnToolStyles;
 }
 
 .eraser {
   background-image: url("../img/Eraser.png");
-  @include btnToolStyles;
 }
 
 .rule {
   background-image: url("../img/Ruler.png");
-  @include btnToolStyles;
 }
 
 .crop {
   background-image: url("../img/Crop.png");
-  @include btnToolStyles;
-}
-
-.actionTools {
-	margin: 0 auto;
-  padding: 10px;
 }
 
 .delete {
-	background-image: url("../img/Delete\ file.png");
-	@include btnToolStyles;
+  background-image: url("../img/Delete\ file.png");
 }
 
 .save {
-	background-image: url("../img/Save.png");
-	@include btnToolStyles;
+  background-image: url("../img/Save.png");
 }
 
 .download {
-	background-image: url("../img/Download.png");
-	@include btnToolStyles;
+  background-image: url("../img/Download.png");
 }
 
 .settings {
-	background-image: url("../img/Config.png");
-	@include btnToolStyles;
+  background-image: url("../img/Config.png");
 }

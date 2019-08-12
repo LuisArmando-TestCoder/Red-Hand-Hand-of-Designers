@@ -13,31 +13,35 @@
 </head>
 
 <body>
-    <section class="top">
-        <input accept=".vga,.png,.jpg,.jpeg,.svg,.gif,.webp" screenShotHide multiple="multiple" type="file" name="image"
-            id="image-input" class="image-file" >
-            <div class="principalTools">
-                <button class="arrow"></button>
-                <button class="lineTool"></button>
-                <button class="text"></button>
-                <button class="eraser"></button>
-                <button class="rule"></button>
-                <button class="crop"></button>
-            </div>
+    <section class="top" id="top">
+        <input accept=".vga,.png,.jpg,.jpeg,.svg,.gif,.webp" multiple="multiple" type="file" name="image"
+            id="image-input" class="invisible">
 
-            <div class="actionTools">
-                <button class="delete"></button>
-                <button class="save"></button>
-                <button class="download"></button>
-                <button class="settings"></button>
-            </div>
-    </section>
-    <section class="bottom">
-        <div screenShotHide class="conf hide">
-            <!-- press Backspace to delete -->
-            <button id="delete-line">Delete Line</button>
+        <div class="initial-inputs">
+            <a title="return to home" href="./home.html">
+                <button class="home tool"></button>
+            </a>
+            <label title="upload image" for="image-input">
+                <button class="image-file tool"></button>
+            </label>
         </div>
-        <a screenShotHide id="download" class="hide">Download</a>
+
+        <div screenShotHide class="principalTools hide">
+            <button class="arrow tool"></button>
+            <!-- <button class="lineTool tool"></button> -->
+            <!-- <button class="text tool"></button> -->
+            <button class="eraser tool"></button>
+            <!-- <button class="rule tool"></button> -->
+            <!-- <button class="crop tool"></button> -->
+        </div>
+
+        <div screenShotHide class="actionTools hide">
+            <button class="save tool"></button>
+            <a screenShotHide id="download" class="hide">
+                <button class="download tool"></button>
+            </a>
+            <button class="settings tool"></button>
+        </div>
     </section>
     <ul screenShotHide class="hide" id="images-controller"></ul>
     <div id="image-wrapper"></div>

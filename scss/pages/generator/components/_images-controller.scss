@@ -6,12 +6,11 @@
     position: fixed;
     height: 100vh;
     width: 75px;
-    left: -160px;
+    left: -185px;
     margin: 0;
     padding: 50px;
     padding-right: 135px;
     box-sizing: border-box;
-    background: #0000;
     direction: rtl;
     transition: 0.5s;
     -webkit-transition: 0.5s;
@@ -27,9 +26,9 @@
     }
 
     &::after {
-        width: 5px;
-        height: 5px;
-        background: #fff;
+        width: 10px;
+        height: 10px;
+        background: $primary-color;
         top: 0;
         left: 9.5px;
         bottom: 0;
@@ -43,8 +42,11 @@
         -moz-transition: 0.5s;
         -ms-transition: 0.5s;
         -o-transition: 0.5s;
-        box-shadow: 0 -20px #fff,
-                    0 20px #fff;
+        box-shadow: 0 -20px 0 0px $primary-color,
+            0 20px 0 0px $primary-color,
+            0 20px 50px 5px $white,
+            0 -20px 50px 5px $white,
+            0 0px 50px 5px $white;
     }
 
     &::before {
@@ -56,19 +58,16 @@
         margin: auto;
         left: 0;
         display: block;
-        transition: 0.5s;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
+        transition: 2.5s;
+        -webkit-transition: 2.5s;
+        -moz-transition: 2.5s;
+        -ms-transition: 2.5s;
+        -o-transition: 2.5s;
         border-radius: 0 10px 10px 0;
         -webkit-border-radius: 0 10px 10px 0;
         -moz-border-radius: 0 10px 10px 0;
         -ms-border-radius: 0 10px 10px 0;
         -o-border-radius: 0 10px 10px 0;
-        border: 3px solid #fff;
-        border-width: 3px 3px 3px 0;
-        box-shadow: 0 0 20px -5px #000;
     }
 
     &:hover {
@@ -89,6 +88,7 @@
     }
 
     li a>img {
+        box-shadow: 0 0 50px -5px #73060f;
         position: relative;
         z-index: 1;
         cursor: pointer;
@@ -108,12 +108,12 @@
     }
 
     button {
+        border: 0;
         cursor: pointer;
         outline: none;
         opacity: 0;
-        background: #0008;
+        background: $black;
         padding: 7.5px 7.5px 7.5px 14px;
-        border: 0;
         top: 20px;
         right: 0;
         position: absolute;
@@ -132,5 +132,7 @@
     button img {
         height: 17.5px;
         width: 17.5px;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 }
