@@ -636,4 +636,8 @@ label[for=image-input]:before {
   box-shadow: 0 0 10px -5px #ffffff;
 }
 
+#image-wrapper div div:not(.line) {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */
