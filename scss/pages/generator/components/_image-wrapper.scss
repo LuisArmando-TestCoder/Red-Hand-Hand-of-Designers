@@ -3,6 +3,10 @@
     place-items: center;
     margin: 0 0 $vertical-spacing;
 
+    div div:not(.line) {
+        display: none;
+    }
+
     img {
         position: absolute;
         user-select: none;

@@ -17,14 +17,14 @@
     });
   }
 
-  // function rePositionLines() {
-  //   const height = image_wrapper.querySelector('img').height;
-  //   const lines = [...image_wrapper.getElementsByClassName('line')];
-  //   console.log(lines);
-  //   lines.forEach(line => 
-  //     line.style.top = `${px(line.style.top) + height}px`
-  //   );
-  // }
+  function rePositionLines(img) {
+    const height = img.height;
+    console.log(height);
+    const lines = [...image_wrapper.getElementsByClassName('line')];
+    lines.forEach(line => 
+      line.style.top = `${px(line.style.top) + height}px`
+    );
+  }
 
   function readerLoaded(e) {
     const img = document.createElement('img');
@@ -37,8 +37,8 @@
       imgSegment.style.setProperty('--width', `${img.width}px`);
       imgSegment.style.setProperty('--height', `${img.height}px`);
       images.push(link.href);
+      rePositionLines(img);
       localStorage.setItem('files', JSON.stringify(images));
-      // rePositionLines();
     });
   }
 
